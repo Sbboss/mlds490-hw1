@@ -91,4 +91,4 @@ This converts `report/report.md` to HTML with Python-Markdown, inlines the figur
 
 ## Hardware
 
-Part 1, CartPole and the validation suite ran on a laptop. Pong ran on `mlds-deepdish5` (48 CPUs, 93 GB RAM) with one RTX PRO 5000 Blackwell GPU, 16 actor processes per job and at most 32 across jobs.
+Part 1 and the shuttle tests ran on the local Mac. The policy-gradient validation suite (including `--pong`) ran on the local Mac. The CartPole matrix ran on the local Mac on CPU. Pong ran on `mlds-deepdish5` (48 CPUs, 93 GB RAM) with one RTX PRO 5000 Blackwell GPU, 16 actor processes per job and at most 32 across jobs.

@@ -20,7 +20,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -U pip && pip install torch && pip install -r requirements.txt
 ```
 
-**Part 1** (CPU, about 2 seconds on my laptop; 29 pytest checks plus 38 validation checks):
+**Part 1** (CPU on the local Mac; the measured re-run was 2.4 s including pytest; 29 pytest checks plus 38 validation checks):
 
 ```bash
 cd shuttle
@@ -81,7 +81,7 @@ python -m pg.evaluate --env pong --run results/pong/ext_P1_lr1e-3/seed0 \
     --n 500 --seed 10000 --workers 16
 ```
 
-**Hardware and runtimes.** Part 1, CartPole and the validation suite ran on my laptop. Pong ran on deepdish (`mlds-deepdish5`): one RTX PRO 5000 Blackwell (48 GB), 16 actor processes per job, at most 32 across jobs, `nice -n 10`. The remote stack is in `results/env_versions.txt`: Python 3.13.5, torch 2.11.0+cu128, numpy 2.5.4, gymnasium 1.4.0, ale-py 0.12.1, CUDA driver 615.71 / CUDA 13.4. The Part 1 re-run took 2.4 s including pytest. The CartPole matrix C0 to C5 (up to 6 seeds at a time) took about 4 minutes. One 2000-episode Pong learning-rate run took between 148 and 272 s, depending on how long the rallies got. A 500-episode CartPole evaluation takes a few seconds when the policy fails right away and about a minute when it reaches the 500-step cap.
+**Hardware and runtimes.** Part 1 and the shuttle tests ran on the local Mac (the measured re-run was 2.4 s including pytest). The policy-gradient validation suite, including `--pong`, also ran on the local Mac. The CartPole matrix ran on the local Mac on CPU (`run_meta.json` has no CUDA device; C0 seed 0 finished in 23.0 s); C0 to C5 with up to 6 seeds at a time took about 4 minutes wall-clock. Pong ran on deepdish (`mlds-deepdish5`): every Pong `run_meta.json` records `device: cuda`, one RTX PRO 5000 Blackwell (48 GB), 16 actor processes per job, at most 32 across jobs, `nice -n 10`. The remote stack is in `results/env_versions.txt`: Python 3.13.5, torch 2.11.0+cu128, numpy 2.5.4, gymnasium 1.4.0, ale-py 0.12.1, CUDA driver 615.71 / CUDA 13.4. One 2000-episode Pong learning-rate run took between 148 and 272 s, depending on how long the rallies got. A 500-episode CartPole evaluation on the Mac takes a few seconds when the policy fails right away and about a minute when it reaches the 500-step cap.
 
 ---
 
