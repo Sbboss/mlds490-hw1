@@ -53,11 +53,15 @@ python -m pg.evaluate --env pong --run results/pong/P0_none/seed0 --workers 16
 `tmux` is not installed on deepdish; long jobs use `nohup setsid` and write
 `log.txt`. Pull artifacts with `bash scripts/sync_down.sh`.
 
-## Repository layout
+## Repository
 
-See `PLAN.md` §5. Short version: `shuttle/` is Part 1; `pg/` is Parts 2–3;
-`validation/` is the edge-case suite; `results/` holds curves and eval JSON;
-`figures/` is what the report includes. Rebuild the PDF with `.venv/bin/python scripts/build_report.py` (the system pandoc binary on the machine used here does not run).
+Public GitHub: https://github.com/Sbboss/mlds490-hw1
+
+`shuttle/` is Part 1; `pg/` is Parts 2–3; `validation/` is the edge-case suite;
+`results/` holds the CSV/JSON curves and evals the report quotes; `figures/`
+is what the report includes. Large Pong weight files (`final.pt`) are not in
+the repo. Rebuild the PDF with `.venv/bin/python scripts/build_report.py`
+(the system pandoc binary on the machine used here does not run).
 
 ## Experiment matrix (CartPole)
 
@@ -83,6 +87,6 @@ Headline Part 2/3 CartPole figures use **seed 0**. Multi-seed bands use all seed
 ## Hardware used
 
 - Local Mac for Part 1, CartPole, and tests
-- `mlds-deepdish5`: 48 CPU, 93 GB RAM, one GPU (`CUDA_VISIBLE_DEVICES=1`,
-  RTX PRO 5000 Blackwell). Never more than one card, never more than 32
-  worker processes.
+- `mlds-deepdish5`: 48 CPU, 93 GB RAM, one GPU (`CUDA_VISIBLE_DEVICES=0`,
+  the RTX PRO 5000 Blackwell; see `DECISIONS.md`). Never more than one card,
+  never more than 32 worker processes.

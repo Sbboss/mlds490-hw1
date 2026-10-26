@@ -2,11 +2,11 @@
 
 **Student:** Shiva (Northwestern MSAI)
 
-**GitHub username:** `<<GITHUB_USERNAME>>`
+**GitHub username:** `Sbboss`
 
-**Repository:** `<<REPO_NAME>>`
+**Repository:** `mlds490-hw1`
 
-**Link:** `<<GITHUB_LINK>>`
+**Link:** `https://github.com/Sbboss/mlds490-hw1`
 
 **AI assistance.** Cursor (an AI coding assistant) wrote the implementation, ran the experiments, and drafted this report from the files those runs produced. The lr 0.01 Pong runs are the primary Part 2 and Part 3 results. The lr 0.001 pair was added afterwards, after those runs and after the 2000-episode sweep were already in hand. The numbers below are copied from `results/` and from the validation logs; they are not the "expected" column of the plan. I am responsible for being able to explain every design choice. The companion explanation is `STUDY_GUIDE.md`.
 

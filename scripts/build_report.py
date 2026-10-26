@@ -8,7 +8,10 @@ from __future__ import annotations
 
 import base64
 import mimetypes
+import re
+import shutil
 import subprocess
+import tempfile
 from pathlib import Path
 
 import markdown
@@ -36,7 +39,6 @@ def main() -> None:
         extensions=["tables", "fenced_code", "sane_lists", "toc"],
     )
     # markdown leaves image src as written in the file (../figures/...)
-    import re
     def repl(m: re.Match) -> str:
         return f'src="{_img(m.group(1))}"'
     body = re.sub(r'src="([^"]+)"', repl, body)
@@ -46,11 +48,18 @@ def main() -> None:
 """
     HTML.write_text(html)
     print("wrote", HTML, "bytes", HTML.stat().st_size)
-    subprocess.run(
-        [CHROME, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-         f"--print-to-pdf={PDF}", HTML.as_uri()],
-        check=True,
-    )
+    # Chrome chokes on a file URI that contains `#` (this homework folder name).
+    # Print from a temp path with no special characters, then copy back.
+    with tempfile.TemporaryDirectory(prefix="mlds490_report_") as tmp:
+        tmp_html = Path(tmp) / "report.html"
+        tmp_pdf = Path(tmp) / "report.pdf"
+        tmp_html.write_text(html)
+        subprocess.run(
+            [CHROME, "--headless", "--disable-gpu", "--no-pdf-header-footer",
+             f"--print-to-pdf={tmp_pdf}", tmp_html.as_uri()],
+            check=True,
+        )
+        shutil.copy2(tmp_pdf, PDF)
     print("wrote", PDF, "bytes", PDF.stat().st_size)
 
 
