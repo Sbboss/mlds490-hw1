@@ -37,7 +37,7 @@
 | 35 | T-P2_paddle_control | exact | PASS | visible=True travel_2=28.5px travel_3=77.5px delta2=-11.00 delta3=63.10 opposite=True cols=(68, 74) | centroid moves ≥5 px one way then ≥5 px the opposite way; paddle visible |
 | 36 | T-P3_copy_safe | exact | PASS | obs unchanged=True | input obs unchanged after preprocess |
 | 37 | T-P3_shape_and_values | exact | PASS | shape=(80, 80) unique=[0.0, 1.0] flat=6400 | (80,80) → 6400, values ⊆ {0,1} |
-| 38 | T-P3_diff_and_first_zero | exact | PASS | first_zero=True diff_vals=[-1, 0, 1] min_nz=6 frac_nonzero_diff_after20=0.96 | first diff all 0; diffs ⊆ {-1,0,1}; min nonzero pixels > 0; ≥50% diffs nonzero after step 20 |
+| 38 | T-P3_diff_and_first_zero | exact | PASS | first_zero=True diff_vals=[-1, 0, 1] min_nz=14 frac_nonzero_diff_after20=1.00 | first diff all 0; diffs ⊆ {-1,0,1}; min nonzero pixels > 0; ≥50% diffs nonzero after step 20 |
 | 39 | T-P4_initial_policy | prediction | PASS | frac_idx0=0.502 mean_entropy=0.693 n_actions=20383 | frac ∈ [0.4, 0.6], entropy ≥ 0.6 |
 | 40 | T-P5_random_anchor | prediction | NOT HELD | rewards=[-20.0, -21.0, -21.0, -19.0, -21.0, -21.0, -21.0, -21.0, -21.0, -20.0, -19.0, -20.0, -20.0, -21.0, -21.0, -18.0, -21.0, -20.0, -21.0, -21.0] mean=-20.40 | integer rewards in [-21,-19], mean ∈ [-21, -19.8] (published random ≈ -20.7) |
 | 41 | T-P9_scripted_ball_tracker | prediction | PASS | mean=9.00 rewards=[9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0] | mean > -18 over 10 episodes (clearly beats random ≈ -20.7) |

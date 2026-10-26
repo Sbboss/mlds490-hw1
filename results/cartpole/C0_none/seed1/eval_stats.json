@@ -27,5 +27,5 @@
   },
   "n": 500,
   "eval_seed": 10000,
-  "ckpt": "/Users/sbboss/NU/Q4/MLDS-490/HW#1/results/cartpole/C0_none/seed1/final.pt"
+  "ckpt": "results/cartpole/C0_none/seed1/final.pt"
 }

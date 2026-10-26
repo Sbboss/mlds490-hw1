@@ -349,7 +349,8 @@ def test_tp9_scripted_tracker():
     A chase of the current ball row scores −21: masking columns ≥ 64 hides
     the ball next to the paddle, and one frameskipped action moves the
     paddle ~11 px so the sign flips every step. scripted_action predicts the
-    intercept and holds still inside a 5 px band. See DECISIONS D19.
+    intercept row at the paddle (with wall reflections) and holds still
+    inside a 5 px band, which is why T-P9 scores near +9 instead of −21.
     """
     env = make_pong_env(deterministic=True)
     rewards = []

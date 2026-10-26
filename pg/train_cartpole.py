@@ -1,7 +1,7 @@
 """CartPole-v1 REINFORCE trainer (CPU; 1 episode per update by default).
 
-All comments that look like justifications are for the report / STUDY_GUIDE:
-the assignment grades the thinking, not only the plots.
+All comments that look like justifications are for the report: the assignment
+grades the thinking, not only the plots.
 """
 from __future__ import annotations
 

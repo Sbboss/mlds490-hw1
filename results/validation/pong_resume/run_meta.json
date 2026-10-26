@@ -1,7 +1,7 @@
 {
   "episodes_done": 5,
   "updates": 5,
-  "seconds": 0.9932651519775391,
+  "seconds": 2.1226627826690674,
   "device": "cpu",
   "args": {
     "seed": 0,
@@ -18,6 +18,7 @@
     "pong_reset_at_point": 1,
     "gamma_weight": "off",
     "grad_clip": 0.0,
+    "early_stop": 1,
     "resume": true,
     "out": "results/validation/pong_resume"
   }

@@ -1,92 +1,94 @@
-# MLDS 490 – Homework 1
+# MLDS 490 Homework 1
 
-Value / policy iteration on a shuttle-dispatch MDP (Part 1) and REINFORCE
-on CartPole-v1 and ALE/Pong-v5, with and without a baseline (Parts 2–3).
+Value and policy iteration on a shuttle-dispatch MDP (Part 1), and REINFORCE on CartPole-v1 and ALE/Pong-v5, with and without a baseline (Parts 2 and 3). The write-up is `report/report.pdf`, built from `report/report.md`.
 
-## How to run
+## What is where
 
-### Local (CPU; CartPole + Part 1 + validation)
+- `shuttle/`: Part 1. The MDP, the three solvers, the figures and the validation checks.
+- `pg/`: Parts 2 and 3. Models, the REINFORCE loss and baselines, the CartPole and Pong trainers, evaluation and plotting.
+- `validation/`: edge-case and correctness tests for the policy-gradient code. Output is in `validation_pg_results.md`.
+- `scripts/`: run, sync and report-building scripts.
+- `results/`: the training curves, evaluation CSVs and JSON files that the report quotes.
+- `figures/`: the figures used in the report.
+
+The large Pong weight files (`final.pt`) and the intermediate checkpoints are not in the repo.
+
+## Setup
 
 ```bash
-cd "/Users/sbboss/NU/Q4/MLDS-490/HW#1"    # quote the path: it contains #
+git clone https://github.com/Sbboss/mlds490-hw1 && cd mlds490-hw1
 python3 -m venv .venv && source .venv/bin/activate
-pip install -U pip
-pip install torch
-pip install -r requirements.txt
+pip install -U pip && pip install torch && pip install -r requirements.txt
+```
 
-# Part 1
-cd shuttle && python run_shuttle.py && python validation.py && python -m pytest -q test_shuttle.py && cd ..
+## Part 1 (CPU, a few seconds)
 
-# Parts 2/3 validation (CPU; add --pong for T-P*)
+```bash
+cd shuttle
+python run_shuttle.py && python validation.py && python -m pytest -q test_shuttle.py
+cd ..
+```
+
+## Validation for Parts 2 and 3 (CPU)
+
+```bash
 python -m validation.run_validation
-python -m validation.run_validation --pong
+python -m validation.run_validation --pong      # needs ale-py, takes a few minutes
+python -m validation.test_tb5                   # gradient-variance experiment, needs C0 seed 0
+```
 
-# CartPole training, one seed
-python -m pg.train_cartpole --baseline none --seed 0 --out results/cartpole/C0_none/seed0
+## CartPole (CPU, a few minutes per seed)
+
+```bash
+python -m pg.train_cartpole --baseline none --seed 0 --episodes 2000 \
+    --out results/cartpole/C0_none/seed0
 python -m pg.evaluate --env cartpole --run results/cartpole/C0_none/seed0
 python -m pg.plot_results
 ```
 
-The full CartPole matrix is `scripts/run_cartpole_all.sh` (or the equivalent
-local loop in this README’s “Experiment matrix”).
+`--baseline value` and `--baseline ema` give the Part 3 runs. `scripts/run_cartpole_all.sh` runs the whole matrix:
 
-### deepdish (one GPU; Pong)
+| id | config | seeds | episodes |
+|---|---|---|---|
+| C0 | no baseline, lr 0.01 | 0 to 4 | 2000 |
+| C1 | value baseline | 0 to 4 | 2000 |
+| C2 | EMA baseline | 0 to 4 | 2000 |
+| C3 | `--gamma_weight on` | 0 to 2 | 2000 |
+| C4 | lr 0.001 | 0 to 2 | 2000 |
+| C5 | `--reward_sign -1` | 0 to 2 | 300 |
+| C7 | 8 episodes per update, lr 0.01 | 0 to 2 | 2000 |
+| C8 | lr 0.003 | 0 to 2 | 2000 |
+
+## Pong (GPU, run on deepdish)
+
+Pong needs exactly one GPU on deepdish. Torch numbers the cards differently from `nvidia-smi`, so check `nvidia-smi` and confirm that only the card you meant to use has memory in use. `scripts/remote_setup.sh` sets up the environment.
 
 ```bash
-# once
-ssh hia9393@mlds-deepdish5.ads.northwestern.edu
-# then, from the laptop:
-bash scripts/sync_up.sh
-ssh hia9393@mlds-deepdish5.ads.northwestern.edu 'bash ~/mlds490_hw1/scripts/remote_setup.sh'
-
-# every Pong process must see exactly one card
-export CUDA_VISIBLE_DEVICES=1
-source ~/venvs/mlds490/bin/activate
-cd ~/mlds490_hw1
-python -m scripts.bench_pong          # T-P11; writes results/pong_bench.json
-# smoke 200 episodes, then LR sweep, then full P0/P1 — see PLAN.md §8.2
-nice -n 10 python -m pg.train_pong --baseline none --lr 1e-3 --workers 16 \
+export CUDA_VISIBLE_DEVICES=0
+export OMP_NUM_THREADS=1
+nice -n 10 python -m pg.train_pong --baseline none --lr 0.01 --workers 16 \
+    --episodes_per_update 16 --max_episodes 25000 --max_hours 4 --seed 0 \
     --out results/pong/P0_none/seed0
 python -m pg.evaluate --env pong --run results/pong/P0_none/seed0 --workers 16
 ```
 
-`tmux` is not installed on deepdish; long jobs use `nohup setsid` and write
-`log.txt`. Pull artifacts with `bash scripts/sync_down.sh`.
+Use `--baseline value` or `--baseline ema` for Part 3. The extended runs (lr 0.001, no early stop, 3-hour cap) and their exact commands are in the "How to run" section of the report. `tmux` isn't installed on that node, so long jobs run under `nohup setsid` and write `log.txt`. `bash scripts/sync_down.sh` pulls the results back.
 
-## Repository
+## Rebuilding the report
 
-Public GitHub: https://github.com/Sbboss/mlds490-hw1
+```bash
+python scripts/build_report.py
+```
 
-`shuttle/` is Part 1; `pg/` is Parts 2–3; `validation/` is the edge-case suite;
-`results/` holds the CSV/JSON curves and evals the report quotes; `figures/`
-is what the report includes. Large Pong weight files (`final.pt`) are not in
-the repo. Rebuild the PDF with `.venv/bin/python scripts/build_report.py`
-(the system pandoc binary on the machine used here does not run).
+This converts `report/report.md` to HTML with Python-Markdown, inlines the figures and prints the PDF with headless Chrome. If Chrome is somewhere else on your machine, change the `CHROME` path at the top of the script.
 
-## Experiment matrix (CartPole)
+## Rough runtimes
 
-| id | config | seeds | episodes |
-|---|---|---|---|
-| C0 | no baseline, w=1, lr 0.01 | 0–4 | 2000 |
-| C1 | value baseline | 0–4 | 2000 |
-| C2 | EMA baseline | 0–4 | 2000 |
-| C3 | `--gamma_weight on` | 0–2 | 2000 |
-| C4 | lr 0.001 | 0–2 | 2000 |
-| C5 | `--reward_sign -1` | 0–2 | 300 |
+- Part 1 solvers and 38 checks: a few seconds.
+- Policy-gradient validation without Pong: a few seconds. With `--pong`: several minutes.
+- CartPole, 2000 episodes, one seed: a few minutes.
+- Pong: 5,000 to 8,000 episodes in 15 to 20 minutes at lr 0.01 before the early stop. The 3-hour extended runs played about 40,000 episodes each.
 
-Headline Part 2/3 CartPole figures use **seed 0**. Multi-seed bands use all seeds.
+## Hardware
 
-## Expected runtimes (order of magnitude)
-
-- Part 1 solvers + 38 checks: ~10 s
-- T-R*/T-B*/T-C* (no Pong): ~2 s
-- T-P* including 20-episode anchors: tens of minutes
-- CartPole 2000 episodes, one seed, CPU: a few minutes
-- Pong 25k episodes or 4 h wall-clock on deepdish, 16 CPU actors + 1 GPU
-
-## Hardware used
-
-- Local Mac for Part 1, CartPole, and tests
-- `mlds-deepdish5`: 48 CPU, 93 GB RAM, one GPU (`CUDA_VISIBLE_DEVICES=0`,
-  the RTX PRO 5000 Blackwell; see `DECISIONS.md`). Never more than one card,
-  never more than 32 worker processes.
+Part 1, CartPole and the validation suite ran on a laptop. Pong ran on `mlds-deepdish5` (48 CPUs, 93 GB RAM) with one RTX PRO 5000 Blackwell GPU, 16 actor processes per job and at most 32 across jobs.

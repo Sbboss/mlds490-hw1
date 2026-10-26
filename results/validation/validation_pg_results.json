@@ -299,7 +299,7 @@
   "name": "T-P3_diff_and_first_zero",
   "kind": "exact",
   "passed": true,
-  "measured": "first_zero=True diff_vals=[-1, 0, 1] min_nz=6 frac_nonzero_diff_after20=0.96",
+  "measured": "first_zero=True diff_vals=[-1, 0, 1] min_nz=14 frac_nonzero_diff_after20=1.00",
   "expected": "first diff all 0; diffs \u2286 {-1,0,1}; min nonzero pixels > 0; \u226550% diffs nonzero after step 20",
   "why": "First-frame convention + ball motion. A dead preprocess would be all zeros."
  },

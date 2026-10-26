@@ -10,15 +10,12 @@ report/_preview/
 .coverage
 htmlcov/
 
-# large / resumable checkpoints; keep CartPole final.pt (tiny) and CSV/JSON
+# checkpoints / weights (CSV/JSON results stay tracked)
+*.pt
+*.pt.bak
 results/**/ckpt_*.pt
 results/**/latest.pt
-results/pong/**/final.pt
-results/validation/**/final.pt
-*.pt.bak
 
-# local planning notes, not part of the submission tree
-PLAN.md
 
 # local editor / OS
 .idea/

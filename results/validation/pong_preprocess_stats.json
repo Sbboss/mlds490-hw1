@@ -1,6 +1,6 @@
 {
-  "min_nonzero": 6,
-  "frac_nonzero_diff_after20": 0.9642857142857143,
+  "min_nonzero": 14,
+  "frac_nonzero_diff_after20": 1.0,
   "diff_vals": [
     -1,
     0,
