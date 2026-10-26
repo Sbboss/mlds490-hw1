@@ -258,16 +258,18 @@ def train(args):
                 save_latest(out / f"ckpt_{episodes_done}.pt", policy, opt, vbase, ema,
                             episodes_done, updates)
 
-            # early-stop: essentially won, or flat for 3000 episodes
-            if len(all_rewards) >= 100 and ma100 >= 15:
-                log("early stop: MA100 >= +15")
-                break
-            if len(all_rewards) >= 3100:
-                ma_now = ma100
-                ma_old = float(moving_average(np.asarray(all_rewards, dtype=np.float64), 100)[-3001])
-                if not np.isnan(ma_old) and abs(ma_now - ma_old) < 0.3:
-                    log(f"early stop: MA100 flat ({ma_old:.2f} -> {ma_now:.2f}) over 3000 episodes")
+            # early-stop: essentially won, or flat for 3000 episodes.
+            # --early_stop 0 keeps the time and episode caps and the NaN stop.
+            if args.early_stop:
+                if len(all_rewards) >= 100 and ma100 >= 15:
+                    log("early stop: MA100 >= +15")
                     break
+                if len(all_rewards) >= 3100:
+                    ma_now = ma100
+                    ma_old = float(moving_average(np.asarray(all_rewards, dtype=np.float64), 100)[-3001])
+                    if not np.isnan(ma_old) and abs(ma_now - ma_old) < 0.3:
+                        log(f"early stop: MA100 flat ({ma_old:.2f} -> {ma_now:.2f}) over 3000 episodes")
+                        break
 
             if not np.isfinite(row["loss"]) or not np.isfinite(row["entropy"]):
                 log("NaN detected; stopping")
@@ -305,6 +307,8 @@ def build_parser():
     p.add_argument("--pong_reset_at_point", type=int, default=1)
     p.add_argument("--gamma_weight", choices=["off", "on"], default="off")
     p.add_argument("--grad_clip", type=float, default=0.0)
+    p.add_argument("--early_stop", type=int, default=1,
+                   help="1: stop on MA100>=15 or flat for 3000 episodes. 0: time/episode caps only.")
     p.add_argument("--resume", action="store_true")
     p.add_argument("--out", type=str, required=True)
     return p

@@ -84,7 +84,8 @@ def plot_hist(csv_path, title, out_name, bins, xlim=None, greedy_csv=None):
     _save(fig, out_name)
 
 
-def plot_multiseed(configs, title, out_name, hline=None, ylim=None):
+def plot_multiseed(configs, title, out_name, hline=None, ylim=None, legend_loc=None,
+                   legend_below=False):
     """configs: list of (label, color, list[csv paths])."""
     fig, ax = plt.subplots(figsize=(8.4, 4.4))
     any_ = False
@@ -118,7 +119,18 @@ def plot_multiseed(configs, title, out_name, hline=None, ylim=None):
     ax.set_xlabel("training episode")
     ax.set_ylabel("100-episode mean reward")
     ax.set_title(title)
-    ax.legend()
+    if legend_below:
+        ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.28), ncol=2, frameon=False)
+        FIG.mkdir(exist_ok=True)
+        path = FIG / out_name
+        fig.savefig(path, dpi=200, bbox_inches="tight")
+        plt.close(fig)
+        print("wrote", path)
+        return
+    if legend_loc:
+        ax.legend(loc=legend_loc)
+    else:
+        ax.legend()
     _save(fig, out_name)
 
 
@@ -209,6 +221,21 @@ def main():
               "Pong Part 3: 500 sampled rollouts of the final policy",
               "fig_pong_p3_hist.png", bins=np.arange(-21.5, 22.5, 1), xlim=(-22, 22),
               greedy_csv="results/pong/P1_value/seed0/eval_greedy.csv")
+    # Extended runs: lr 0.001, early-stop off, 3-hour cap. Not the primary results.
+    plot_training("results/pong/ext_P0_lr1e-3/seed0/episode_rewards.csv",
+                  "Pong extended  no baseline  lr=0.001  γ=0.99  seed=0",
+                  "fig_pong_ext_p0_curve.png", ylim=(-21, 21))
+    plot_training("results/pong/ext_P1_lr1e-3/seed0/episode_rewards.csv",
+                  "Pong extended  value baseline  lr=0.001  γ=0.99  seed=0",
+                  "fig_pong_ext_p1_curve.png", ylim=(-21, 21))
+    plot_hist("results/pong/ext_P0_lr1e-3/seed0/eval_sampled.csv",
+              "Pong extended, no baseline: 500 sampled rollouts (lr=0.001)",
+              "fig_pong_ext_p0_hist.png", bins=np.arange(-21.5, 22.5, 1), xlim=(-22, 22),
+              greedy_csv="results/pong/ext_P0_lr1e-3/seed0/eval_greedy.csv")
+    plot_hist("results/pong/ext_P1_lr1e-3/seed0/eval_sampled.csv",
+              "Pong extended, value baseline: 500 sampled rollouts (lr=0.001)",
+              "fig_pong_ext_p1_hist.png", bins=np.arange(-21.5, 22.5, 1), xlim=(-22, 22),
+              greedy_csv="results/pong/ext_P1_lr1e-3/seed0/eval_greedy.csv")
 
     # LR sweep + overlays
     sweep = []
@@ -220,11 +247,13 @@ def main():
     plot_multiseed(sweep, "Pong LR sweep (baseline none, 2000 episodes, training reward)",
                    "fig_pong_lr_sweep.png", ylim=(-21, 21))
     plot_multiseed([
-        ("P0 no baseline", BLUE, ["results/pong/P0_none/seed0/episode_rewards.csv"]),
-        ("P1 value baseline", ORANGE, ["results/pong/P1_value/seed0/episode_rewards.csv"]),
-        ("P2 EMA baseline", AQUA, ["results/pong/P2_ema/seed0/episode_rewards.csv"]),
-    ], "Pong full runs: 100-episode mean reward",
-       "fig_pong_full_overlay.png", ylim=(-21, 21))
+        ("P0 lr 0.01, no baseline", BLUE, ["results/pong/P0_none/seed0/episode_rewards.csv"]),
+        ("P1 lr 0.01, value", ORANGE, ["results/pong/P1_value/seed0/episode_rewards.csv"]),
+        ("P2 lr 0.01, EMA", AQUA, ["results/pong/P2_ema/seed0/episode_rewards.csv"]),
+        ("ext lr 0.001, no baseline", INK, ["results/pong/ext_P0_lr1e-3/seed0/episode_rewards.csv"]),
+        ("ext lr 0.001, value", "#6b4c9a", ["results/pong/ext_P1_lr1e-3/seed0/episode_rewards.csv"]),
+    ], "Pong: 100-episode mean, primary runs and the lr 0.001 extended runs",
+       "fig_pong_full_overlay.png", ylim=(-21, 21), legend_below=True)
 
     plot_tb5()
     print("plot_results done")

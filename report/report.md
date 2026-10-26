@@ -8,7 +8,7 @@
 
 **Link:** `<<GITHUB_LINK>>`
 
-**AI assistance.** Cursor (an AI coding assistant) wrote the implementation, ran the experiments, and drafted this report from the files those runs produced. The numbers below are copied from `results/` and from the validation logs; they are not the "expected" column of the plan. I am responsible for being able to explain every design choice. The companion explanation is `STUDY_GUIDE.md`.
+**AI assistance.** Cursor (an AI coding assistant) wrote the implementation, ran the experiments, and drafted this report from the files those runs produced. The lr 0.01 Pong runs are the primary Part 2 and Part 3 results. The lr 0.001 pair was added afterwards, after those runs and after the 2000-episode sweep were already in hand. The numbers below are copied from `results/` and from the validation logs; they are not the "expected" column of the plan. I am responsible for being able to explain every design choice. The companion explanation is `STUDY_GUIDE.md`.
 
 ---
 
@@ -63,6 +63,25 @@ python -m pg.evaluate --env pong --run results/pong/P0_none/seed0 --workers 16
 ```
 
 Part 3 is the same command with `--baseline value` (learned state-value) or `--baseline ema`. `tmux` is not installed on this node; long jobs are `nohup setsid` and write `log.txt`. Pull artifacts with `bash scripts/sync_down.sh`.
+
+The extended runs are not a replacement for the command above. They use lr 0.001, turn the moving-average early-stop off, and stop at 3 hours. Both were started together, 16 workers each, on the same GPU (`CUDA_VISIBLE_DEVICES=0`, the 48 GB card).
+
+```bash
+env CUDA_VISIBLE_DEVICES=0 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  nice -n 10 python -m pg.train_pong --baseline none --lr 0.001 \
+    --workers 16 --episodes_per_update 16 --max_episodes 1000000 \
+    --max_hours 3 --early_stop 0 --seed 0 \
+    --out results/pong/ext_P0_lr1e-3/seed0
+env CUDA_VISIBLE_DEVICES=0 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  nice -n 10 python -m pg.train_pong --baseline value --lr 0.001 \
+    --workers 16 --episodes_per_update 16 --max_episodes 1000000 \
+    --max_hours 3 --early_stop 0 --seed 0 \
+    --out results/pong/ext_P1_lr1e-3/seed0
+python -m pg.evaluate --env pong --run results/pong/ext_P0_lr1e-3/seed0 \
+    --n 500 --seed 10000 --workers 16
+python -m pg.evaluate --env pong --run results/pong/ext_P1_lr1e-3/seed0 \
+    --n 500 --seed 10000 --workers 16
+```
 
 **Hardware used.** Laptop for Part 1, CartPole, and the validation suite. deepdish (`mlds-deepdish5`) for Pong: one GPU (RTX PRO 5000 Blackwell, 48 GB), 16 actor processes per job, at most 32 actors across jobs, `nice -n 10`. Remote stack, recorded in `results/env_versions.txt`: Python 3.13.5, torch 2.11.0+cu128, numpy 2.5.4, gymnasium 1.4.0, ale-py 0.12.1, CUDA driver 615.71 / CUDA 13.4. A 512×512 matmul on the GPU succeeded at setup.
 
@@ -219,11 +238,11 @@ The architecture is the Karpathy MLP, `6400 → 200 → 2`. The batch is 16 epis
 
 ![Pong learning-rate sweep](../figures/fig_pong_lr_sweep.png)
 
-*Figure 8. 100-episode mean of the training reward for the four learning rates. Only lr = 0.01 leaves the random-agent floor. It is also the learning rate the assignment asked for, so the full runs do not change it. The curve at 0.01 reaches about +0.8 and ends at −1.0; that wiggle is why a 2000-episode sweep is not treated as a finished player.*
+*Figure 8. 100-episode mean of the training reward for the four learning rates, each stopped at 2000 episodes. Only lr = 0.01 leaves the random-agent floor inside that window. It is also the learning rate the assignment asked for, so the primary full runs do not change it. The curve at 0.01 reaches about +0.8 and ends at −1.0. lr 0.001 is still near −17 here. That ranking does not survive the 3-hour runs below: the sweep horizon was too short.*
 
 A random agent scores about −20.7, and the standard error of a 100-episode mean is about 0.1, so a rise of 0.3 is the smallest change worth calling learning. lr = 0.01 rises by about 19 points and triples the rally length. The policy also becomes very peaked (entropy 0.04, against a maximum of 0.69). The action margin stays near one half (`frac` of index 0 ≈ 0.45), so it has not collapsed onto a single button; it has collapsed onto a confident choice in each state. The two smaller rates never leave entropy 0.69 and never leave −20. lr = 0.001 is in between: MA100 −17.3, entropy still 0.45, rallies about 1900.
 
-The smoke test at lr 0.001 for 200 episodes, run before the sweep, stayed finite, kept entropy at 0.693, and kept the action fraction at 0.50. That only checks that the loop is not diverging. It does not show learning, and the sweep is why 0.01 is the one that does.
+The smoke test at lr 0.001 for 200 episodes, run before the sweep, stayed finite, kept entropy at 0.693, and kept the action fraction at 0.50. That only checks that the loop is not diverging. Inside the 2000-episode window, 0.01 is the rate that learns, which is why the primary runs stay at 0.01. The extended runs later in this section show that window was too short for 0.001.
 
 The full Part 2 run is seed 0, lr 0.01, batch 16, no baseline, no return standardization. It stopped at episode 5232, after 986 seconds, because the 100-episode mean had moved only from −2.29 to −2.08 across 3000 episodes. That rule looks at the two endpoints. Inside the window the curve still swung: the moving average peaked at **+2.65** at episode 3092 and finished at **−2.08**.
 
@@ -235,7 +254,23 @@ The full Part 2 run is seed 0, lr 0.01, batch 16, no baseline, no return standar
 
 *Figure 10. 500 sampled rollouts of the final Part 2 policy (evaluation seeds from 10000). Mean −2.62, standard deviation 7.24, n = 500, range −17 to +20. Greedy rollouts: −2.59 ± 7.48, range −21 to +20. The mass sits a little below zero. A few games reach +20, and the policy is not a solved player.*
 
-Five checkpoints from the last 20% of training, 50 episodes each, scored −3.80, −3.68, −3.04, −3.16, and −3.78. They agree with each other to about one point. The final-policy lottery that showed up on CartPole does not show up here. Entropy at the end of training was 0.022, so the policy is confident, and the fraction of index-0 actions stayed near 0.45, so it did not lock onto one button.
+Five checkpoints from the last 20% of training, 50 episodes each, scored −3.80, −3.68, −3.04, −3.16, and −3.78. They agree with each other to about one point. The final-policy lottery that showed up on CartPole does not show up here. Entropy at the end of training was 0.023, so the policy is confident, and the fraction of index-0 actions stayed near 0.45, so it did not lock onto one button.
+
+### Extended run (lr 0.001, no baseline)
+
+This is not the Part 2 result. The Part 2 result is the lr 0.01 run above. lr 0.001 was chosen after that run and after the 2000-episode sweep were already finished. The moving-average early-stop was off. The episode ceiling was 1,000,000, so the run stopped when `run_meta.json` recorded 10801.9 seconds (3.00 hours). It played 42,128 episodes. Entropy at the last update was 0.055.
+
+![Extended Part 2 training](../figures/fig_pong_ext_p0_curve.png)
+
+*Figure 11. Extended run, no baseline, seed 0, lr 0.001, γ = 0.99, early-stop off. The 100-episode mean leaves −21 later than the lr 0.01 curve and is still near +15.6 when the 3-hour clock stops it. The primary lr 0.01 run had already stopped at −2.08.*
+
+![Extended Part 2 histogram](../figures/fig_pong_ext_p0_hist.png)
+
+*Figure 12. 500 sampled rollouts of that final policy, evaluation seed 10000, the same seed as the primary runs. Mean 15.65, standard deviation 2.85, n = 500, range 4 to 21. Greedy: 15.90 ± 2.88. Five checkpoints from the last 20% of training, 50 episodes each, scored 16.5, 16.1, 16.2, 16.4, and 15.3.*
+
+The 2000-episode sweep favored lr 0.01. At that horizon lr 0.001 sat at −17.27. After about 40,000 episodes the order reversed: this run's final moving average is +15.56 and its 500-episode mean is +15.65, against −2.08 and −2.62 for the primary no-baseline run. The sweep horizon was too short.
+
+The clocks are not the same experiment. This run trained for 3.00 hours. The primary no-baseline run's `run_meta.json` clock is 987 seconds, 0.27 hours, about 16 minutes. The comparison mixes learning rate and training length. The four-run table, with the value-baseline pair, is in the Part 3 extended-run section.
 
 ### How we know the estimator and the Pong pipeline work
 
@@ -285,11 +320,11 @@ Two baselines, both action-independent, so neither changes the mean of the gradi
 
 ![Part 3 training, seed 0](../figures/fig_cartpole_p3_curve.png)
 
-*Figure 11. Value baseline, seed 0, same lr 0.01 and γ = 0.95 as Part 2. The moving average first reaches the cap near episode 744, falls to about 182 around episode 1640, and is back at 500 at the end. The final policy, not the dip, is what the histogram evaluates.*
+*Figure 13. Value baseline, seed 0, same lr 0.01 and γ = 0.95 as Part 2. The moving average first reaches the cap near episode 744, falls to about 182 around episode 1640, and is back at 500 at the end. The final policy, not the dip, is what the histogram evaluates.*
 
 ![Part 3 histogram, seed 0](../figures/fig_cartpole_p3_hist.png)
 
-*Figure 12. All 500 sampled rollouts of the final seed-0 value-baseline policy score 500 (std 0). Greedy rollouts are the same. Every episode ends at the time limit. This is the truncation spike the histogram is supposed to show, and it is the entire distribution.*
+*Figure 14. All 500 sampled rollouts of the final seed-0 value-baseline policy score 500 (std 0). Greedy rollouts are the same. Every episode ends at the time limit. This is the truncation spike the histogram is supposed to show, and it is the entire distribution.*
 
 | config | training MA100 by seed | 500-ep sampled means |
 |---|---|---|
@@ -315,7 +350,7 @@ A 40-epoch fit left `R²` negative (about −0.05 to −0.30). That fit had not 
 
 ![Gradient variance](../figures/fig_tb5_gradient_variance.png)
 
-*Figure 13. Left: the value network explains almost all of the held-out return variance once it is actually fit. Right: both baselines cut the trace of the gradient covariance; the state-value baseline cuts it by roughly 100×. The dashed line is "no reduction."*
+*Figure 15. Left: the value network explains almost all of the held-out return variance once it is actually fit. Right: both baselines cut the trace of the gradient covariance; the state-value baseline cuts it by roughly 100×. The dashed line is "no reduction."*
 
 The constant baseline is worth about a 5× variance cut and stays aligned with the uncentered gradient except at the episode-1000 checkpoint, where the cosine falls to 0.61. The value baseline's cosine at that same checkpoint is **0.33**, not 1. The mean gradient there is small relative to the noise (the no-baseline trace is five times larger than at the other two checkpoints), so the cosine of two noisy means is not a stable "the estimator is unbiased" certificate at that one checkpoint. At episode 200 and at the final weights the cosines are 0.97 and 0.99. The variance ratios are below 1 at every checkpoint. `R²` is above 0.5 at every checkpoint, including the final one (0.97).
 
@@ -329,13 +364,38 @@ The Part 3 Pong run uses the same lr 0.01 and the same batch of 16, plus the lea
 
 ![Part 3 Pong training](../figures/fig_pong_p3_curve.png)
 
-*Figure 14. Pong, value baseline, seed 0, lr 0.01, γ = 0.99. The moving average crosses zero near episode 1500 and levels off near +11. That is about 13 points above the Part 2 run, which leveled off near −2.*
+*Figure 16. Pong, value baseline, seed 0, lr 0.01, γ = 0.99. The moving average crosses zero near episode 1500 and levels off near +11. That is about 13 points above the Part 2 run, which leveled off near −2.*
 
 ![Part 3 Pong histogram](../figures/fig_pong_p3_hist.png)
 
-*Figure 15. 500 sampled rollouts of the final value-baseline policy. Mean 10.50, standard deviation 4.75, n = 500, range −7 to +20. Greedy: 10.56 ± 4.76. Almost all of the mass is positive. A handful of games still lose.*
+*Figure 17. 500 sampled rollouts of the final value-baseline policy. Mean 10.50, standard deviation 4.75, n = 500, range −7 to +20. Greedy: 10.56 ± 4.76. Almost all of the mass is positive. A handful of games still lose.*
 
 Five late checkpoints, 50 episodes each, scored 11.7, 10.7, 10.3, 10.9, and 11.4. Same picture as Part 2: the late policies agree, and the final save is not a lucky outlier.
+
+### Extended run (lr 0.001, value baseline)
+
+Same departure from the spec as the extended Part 2 run: lr 0.001, early-stop off, 3-hour cap, seed 0, 16 workers, run at the same time as that no-baseline job. It was chosen after the primary results were in. `run_meta.json` records 10804.8 seconds and 39,232 episodes. The last-update entropy was 0.056.
+
+![Extended Part 3 training](../figures/fig_pong_ext_p1_curve.png)
+
+*Figure 18. Extended run, value baseline, seed 0, lr 0.001. The moving average ends at +16.26. The primary value-baseline run, at lr 0.01, ended at +10.65.*
+
+![Extended Part 3 histogram](../figures/fig_pong_ext_p1_hist.png)
+
+*Figure 19. 500 sampled rollouts, evaluation seed 10000. Mean 16.77, standard deviation 2.28, n = 500, range 6 to 21. Greedy: 16.70 ± 2.46. Five late checkpoints, 50 episodes each, scored 16.8, 16.9, 17.2, 17.4, and 16.7.*
+
+| run | episodes | wall-clock hours | final MA100 | entropy at the end | 500-ep sampled |
+|---|---|---|---|---|---|
+| lr 0.01, no baseline | 5232 | 0.27 | −2.08 | 0.023 | −2.62 ± 7.24 |
+| lr 0.01, value baseline | 7488 | 0.33 | +10.65 | 0.020 | +10.50 ± 4.75 |
+| lr 0.001, no baseline | 42128 | 3.00 | +15.56 | 0.055 | +15.65 ± 2.85 |
+| lr 0.001, value baseline | 39232 | 3.00 | +16.26 | 0.056 | +16.77 ± 2.28 |
+
+Hours are `run_meta.json` seconds divided by 3600. The lr 0.01 value-baseline cell is the resumed process only (1189.7 seconds). The killed prefix, before the memory fix, was about 10 minutes and is not in that cell. Moving averages and the 500-episode means are recomputed from `episode_rewards.csv` and `eval_sampled.csv`. Entropy is the last row of `curve.csv`.
+
+On these files the lr 0.001 policies score higher than both primary runs, in the training moving average and in the 500-episode evaluation. The 2000-episode sweep had the opposite order, because lr 0.001 was still near −17 when that sweep stopped. The longer runs also trained about ten times longer than the clocks in the table (3.00 hours against 0.27 and 0.33 hours), so learning rate and training length are mixed. lr 0.001 was chosen after seeing the lr 0.01 results.
+
+The baseline's advantage at lr 0.001 is +16.26 against +15.56 on the training MA100, under one point, from one seed each. The evaluation gap is about one point (16.77 against 15.65). That is not evidence that the baseline helped or that it did not.
 
 | run | episodes | training MA100 | 500-ep sampled | greedy |
 |---|---|---|---|---|
@@ -343,15 +403,15 @@ Five late checkpoints, 50 episodes each, scored 11.7, 10.7, 10.3, 10.9, and 11.4
 | P1, value baseline | 7488 | +10.65 (peak +12.68) | +10.50 ± 4.75 | +10.56 ± 4.76 |
 | P2, EMA baseline | 6016 | +4.10 (peak +7.61) | +5.19 ± 7.46 | +5.01 ± 6.89 |
 
-On this seed the value baseline is worth about 13 points over no baseline, and the EMA sits between them. The value-baseline evaluation matches its training moving average. It is one seed. The CartPole matrix is the evidence that a single seed can flatter either algorithm. Pong was pre-registered at one seed because of the wall clock, and that limit is what this table is.
+On this seed, at lr 0.01, the value baseline is worth about 13 points over no baseline, and the EMA sits between them. The value-baseline evaluation matches its training moving average. It is one seed. The CartPole matrix is the evidence that a single seed can flatter either algorithm. Pong was pre-registered at one seed because of the wall clock, and that limit is what this table is.
 
 ![Pong EMA histogram](../figures/fig_pong_ema_hist.png)
 
-*Figure 16. 500 sampled rollouts of the EMA policy. Mean 5.19 ± 7.46, n = 500, range −18 to +20. The distribution is wide and has weight on both sides of zero, unlike the value-baseline histogram, which is mostly above zero.*
+*Figure 20. 500 sampled rollouts of the EMA policy. Mean 5.19 ± 7.46, n = 500, range −18 to +20. The distribution is wide and has weight on both sides of zero, unlike the value-baseline histogram, which is mostly above zero.*
 
 ![Pong full-run overlay](../figures/fig_pong_full_overlay.png)
 
-*Figure 17. 100-episode mean of the three full runs. Value baseline ends highest, EMA in the middle, no baseline near −2 after having touched +2. All three left −21. None reached +15, which was the early-stop line for a solved player.*
+*Figure 21. 100-episode mean of every Pong run. The lr 0.01 runs stop within the first few thousand episodes: no baseline near −2, EMA near +4, value baseline near +11. The two lr 0.001 runs continue to about 40,000 episodes and finish near +16. They also trained for 3 hours rather than about 16–20 minutes, so the picture mixes learning rate and training length.*
 
 The EMA late checkpoints, 50 episodes each, scored 7.7, 4.6, 6.5, 8.9, and 6.2. That is a wider band than Part 2 or the value baseline (those stayed within about one point) and still nothing like the CartPole spread of more than 100. P2 stopped at episode 6016 because the moving average had moved from 4.11 to 4.10 over 3000 episodes.
 
@@ -389,7 +449,7 @@ I would spend the time on checks that can still change my mind, not on more of t
 
 More CartPole seeds, with a confidence interval on the difference between no baseline and the value baseline, and a paired test. Five seeds already show that both algorithms sometimes collapse; thirty would say whether the collapse rate actually differs. The `γ = 0` run is already in the report and it collapsed, which is not what the expectation predicts, so the next measurement is the same run at a much smaller learning rate or with many episodes per update, where the mean-zero gradient might actually stay near the random policy. A sweep over `γ ∈ {0.5, 0.8, 0.99}` is still missing. I would not assume that a longer horizon learns faster.
 
-On Pong, the obvious missing comparison is a convolutional network against this MLP, and a stronger estimator (GAE, then A2C or PPO) against REINFORCE at the same wall clock. The lr = 0.01 policy becomes very peaked; I would want to know whether an entropy bonus or a larger batch holds the entropy up without giving back the score. The point-reset is a modeling choice, and I would train one run without it. Evaluation should cover more seeds and both sticky-action settings, because the training environment has sticky actions at 0.25 and a single evaluation seed can flatter a peaked policy.
+On Pong, the 2000-episode learning-rate sweep was the wrong horizon. lr 0.001 looked stuck near −17 and then, over 3 hours with the early-stop removed, passed both lr 0.01 policies. That comparison still mixes learning rate with training length, and it is one seed. The experiment I would run next is the same four cells at a matched wall clock, with more than one seed. A convolutional network against this MLP, and a stronger estimator (GAE, then A2C or PPO) at that same clock, are still open. The point-reset is a modeling choice, and I would train one run without it. Evaluation should cover both sticky-action settings, because the training environment has sticky actions at 0.25 and a single evaluation seed can flatter a peaked policy.
 
 The cleanest new test is to run the same policy gradient on the shuttle MDP, where Part 1 already gives the optimal value and the optimal threshold. That is an exactly solvable testbed: the learned dispatch threshold can be compared with 13, and the learned value with 576.67, with the stochasticity reduced until the comparison is sharp. I would also move the arrival distribution (not just uniform on 1…5) and the cap semantics, and see how far the threshold moves before the "cap 10 never dispatches" artifact appears.
 
@@ -403,11 +463,11 @@ For the baseline itself I would estimate the optimal state-dependent baseline ra
 
 ![Six preprocessed frames and their differences](../figures/appendix_pong_preprocess.png)
 
-*Figure 18. Top: six consecutive preprocessed frames. The right paddle is the bright vertical mark; the ball is one or two pixels and is easy to miss in a still. Bottom: the frame difference. The first difference is identically zero (no previous frame). Later differences show the paddle and the ball moving, with values in `{−1, 0, 1}`.*
+*Figure 22. Top: six consecutive preprocessed frames. The right paddle is the bright vertical mark; the ball is one or two pixels and is easy to miss in a still. Bottom: the frame difference. The first difference is identically zero (no previous frame). Later differences show the paddle and the ball moving, with values in `{−1, 0, 1}`.*
 
 ![Paddle control](../figures/appendix_paddle_control.png)
 
-*Figure 19. Deterministic environment, action 2 for 30 steps then action 3 for 60. The right-paddle centroid travels tens of pixels and reverses. Action 2 decreases the row; action 3 increases it. The scripted controller in T-P9 uses that sign.*
+*Figure 23. Deterministic environment, action 2 for 30 steps then action 3 for 60. The right-paddle centroid travels tens of pixels and reverses. Action 2 decreases the row; action 3 increases it. The scripted controller in T-P9 uses that sign.*
 
 ### Throughput
 

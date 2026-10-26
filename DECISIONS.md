@@ -53,6 +53,19 @@ the plan requires. Two labeled variants, three seeds each, 2000 episodes:
 C7 (`--episodes_per_update 8`, lr 0.01) and C8 (lr 0.003, one episode per
 update).
 
+## D29 — Extended Pong runs at lr 1e-3
+The lr 0.01 runs stay the primary Part 2 and Part 3 results. A second pair,
+no baseline and value baseline, uses lr 1e-3, seed 0, batch 16, 16 workers
+each, on the same PRO 5000. The MA early-stop is off (`--early_stop 0`).
+The episode ceiling is raised to 1,000,000 so the 3-hour clock is the cap.
+A non-finite loss still stops the run. These are reported as extended runs,
+not as a replacement for lr 0.01. lr 0.001 was chosen after the lr 0.01
+runs and the 2000-episode sweep were already finished. Both jobs ran
+together. Measured clocks are 10801.9 s (42,128 episodes, final MA100
++15.56, entropy 0.055, 500-ep mean 15.65 ± 2.85) and 10804.8 s (39,232
+episodes, final MA100 +16.26, entropy 0.056, 500-ep mean 16.77 ± 2.28).
+The training-MA gap between them is under one point.
+
 ## D28 — How the PDF was built
 `/opt/anaconda3/bin/pandoc` is an x86_64 binary and will not start on this
 Mac. `scripts/build_report.py` converts `report/report.md` with

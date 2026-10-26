@@ -1,0 +1,25 @@
+{
+  "episodes_done": 39232,
+  "updates": 2452,
+  "seconds": 10804.74790930748,
+  "device": "cuda",
+  "args": {
+    "seed": 0,
+    "workers": 16,
+    "episodes_per_update": 16,
+    "lr": 0.001,
+    "gamma": 0.99,
+    "max_episodes": 1000000,
+    "max_hours": 3.0,
+    "arch": "mlp",
+    "hidden": 200,
+    "baseline": "value",
+    "standardize": 0,
+    "pong_reset_at_point": 1,
+    "gamma_weight": "off",
+    "grad_clip": 0.0,
+    "early_stop": 0,
+    "resume": false,
+    "out": "results/pong/ext_P1_lr1e-3/seed0"
+  }
+}

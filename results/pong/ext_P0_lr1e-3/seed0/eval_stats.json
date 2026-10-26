@@ -1,0 +1,19 @@
+{
+  "sampled": {
+    "mean": 15.646,
+    "std": 2.853940074335092,
+    "min": 4.0,
+    "max": 21.0,
+    "n": 500
+  },
+  "greedy": {
+    "mean": 15.9,
+    "std": 2.8751579202075606,
+    "min": 5.0,
+    "max": 21.0,
+    "n": 500
+  },
+  "n": 500,
+  "eval_seed": 10000,
+  "ckpt": "results/pong/ext_P0_lr1e-3/seed0/final.pt"
+}
