@@ -1,0 +1,5 @@
+up=1 ep=1 R=-21.00 len=885 H=0.693 p0=0.50 ma100=nan sps=1131 batch=0.8s wall=1s
+up=2 ep=2 R=-20.00 len=1225 H=0.693 p0=0.50 ma100=nan sps=1870 batch=0.3s wall=1s
+up=3 ep=3 R=-20.00 len=1102 H=0.693 p0=0.49 ma100=nan sps=2245 batch=0.3s wall=1s
+up=4 ep=4 R=-21.00 len=824 H=0.693 p0=0.50 ma100=nan sps=1328 batch=0.6s wall=1s
+up=5 ep=5 R=-21.00 len=885 H=0.693 p0=0.48 ma100=nan sps=1946 batch=0.2s wall=1s

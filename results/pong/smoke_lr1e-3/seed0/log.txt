@@ -1,0 +1,47 @@
+pong device=cuda cuda=True visible=1
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+up=1 ep=16 R=-20.38 len=1032 H=0.693 p0=0.50 ma100=nan sps=889 batch=1.9s wall=19s
+up=2 ep=32 R=-20.31 len=981 H=0.693 p0=0.51 ma100=nan sps=1643 batch=0.8s wall=20s
+up=3 ep=48 R=-20.56 len=1037 H=0.693 p0=0.50 ma100=nan sps=2356 batch=0.9s wall=21s
+up=4 ep=64 R=-20.12 len=1097 H=0.693 p0=0.50 ma100=nan sps=3027 batch=1.0s wall=22s
+up=5 ep=80 R=-20.31 len=1034 H=0.693 p0=0.50 ma100=nan sps=3613 batch=0.8s wall=23s
+up=6 ep=96 R=-20.50 len=1024 H=0.693 p0=0.51 ma100=nan sps=4136 batch=0.8s wall=24s
+up=7 ep=112 R=-19.62 len=1082 H=0.693 p0=0.50 ma100=-20.23 sps=4636 batch=0.9s wall=25s
+up=8 ep=128 R=-20.31 len=1015 H=0.693 p0=0.50 ma100=-20.22 sps=5064 batch=0.8s wall=26s
+up=9 ep=144 R=-20.69 len=1025 H=0.693 p0=0.50 ma100=-20.28 sps=5464 batch=0.8s wall=27s
+up=10 ep=160 R=-20.44 len=1041 H=0.693 p0=0.49 ma100=-20.27 sps=5813 batch=0.8s wall=29s
+up=11 ep=176 R=-20.38 len=1036 H=0.693 p0=0.51 ma100=-20.32 sps=6163 batch=0.8s wall=30s
+up=12 ep=192 R=-20.50 len=990 H=0.693 p0=0.50 ma100=-20.32 sps=6475 batch=0.8s wall=31s
+up=13 ep=208 R=-20.19 len=1035 H=0.693 p0=0.50 ma100=-20.39 sps=6785 batch=0.8s wall=32s
+up=13 ep=208 R=-20.19 len=1035 H=0.693 p0=0.50 ma100=-20.39 sps=6785 batch=0.8s wall=32s

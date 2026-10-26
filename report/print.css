@@ -1,0 +1,38 @@
+body {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 11pt;
+  line-height: 1.4;
+  color: #1c1c1c;
+  max-width: 7.1in;
+  margin: 0 auto;
+  padding: 0 0.15in;
+}
+h1, h2, h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.2;
+  page-break-after: avoid;
+}
+img { max-width: 100%; height: auto; page-break-inside: avoid; }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 9pt;
+  margin: 0.5em 0 1em;
+  page-break-inside: avoid;
+}
+th, td {
+  border: 1px solid #bbb;
+  padding: 3px 5px;
+  vertical-align: top;
+  text-align: left;
+}
+th { background: #f4f4f2; }
+code { font-size: 0.88em; }
+pre {
+  font-size: 8.5pt;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #f7f7f5;
+  padding: 0.4em 0.6em;
+}
+@page { margin: 0.65in; }

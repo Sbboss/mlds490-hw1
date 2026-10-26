@@ -1,0 +1,95 @@
+{
+  "sampled": {
+    "mean": 209.392,
+    "std": 13.506264263248273,
+    "min": 178.0,
+    "max": 250.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 1.0,
+      "angle": 0.0,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "greedy": {
+    "mean": 218.188,
+    "std": 13.533623829111544,
+    "min": 185.0,
+    "max": 256.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 1.0,
+      "angle": 0.0,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "spread": {
+    "ckpt_1600.pt": {
+      "mean": 217.78,
+      "std": 11.822306829697418,
+      "min": 195.0,
+      "max": 241.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 1.0,
+        "angle": 0.0,
+        "time-limit": 0.0,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_1700.pt": {
+      "mean": 152.88,
+      "std": 9.310165609347095,
+      "min": 137.0,
+      "max": 172.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 1.0,
+        "angle": 0.0,
+        "time-limit": 0.0,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_1800.pt": {
+      "mean": 102.7,
+      "std": 5.810792211260782,
+      "min": 91.0,
+      "max": 114.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 0.14,
+        "angle": 0.86,
+        "time-limit": 0.0,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_1900.pt": {
+      "mean": 118.98,
+      "std": 7.063819860416046,
+      "min": 107.0,
+      "max": 133.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 1.0,
+        "angle": 0.0,
+        "time-limit": 0.0,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_2000.pt": {
+      "mean": 206.38,
+      "std": 13.269406273723886,
+      "min": 182.0,
+      "max": 234.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 1.0,
+        "angle": 0.0,
+        "time-limit": 0.0,
+        "unknown": 0.0
+      }
+    }
+  }
+}

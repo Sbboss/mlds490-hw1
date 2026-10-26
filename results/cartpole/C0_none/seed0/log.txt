@@ -1,0 +1,21 @@
+cartpole seed=0 ep=100 R=87 len=87 H=0.571 t=0s
+cartpole seed=0 ep=200 R=71 len=71 H=0.410 t=1s
+cartpole seed=0 ep=300 R=51 len=51 H=0.288 t=2s
+cartpole seed=0 ep=400 R=170 len=170 H=0.298 t=3s
+cartpole seed=0 ep=500 R=144 len=144 H=0.293 t=4s
+cartpole seed=0 ep=600 R=30 len=30 H=0.328 t=6s
+cartpole seed=0 ep=700 R=36 len=36 H=0.239 t=7s
+cartpole seed=0 ep=800 R=149 len=149 H=0.166 t=7s
+cartpole seed=0 ep=900 R=108 len=108 H=0.091 t=10s
+cartpole seed=0 ep=1000 R=131 len=131 H=0.079 t=11s
+cartpole seed=0 ep=1100 R=123 len=123 H=0.049 t=12s
+cartpole seed=0 ep=1200 R=73 len=73 H=0.068 t=14s
+cartpole seed=0 ep=1300 R=93 len=93 H=0.041 t=15s
+cartpole seed=0 ep=1400 R=89 len=89 H=0.061 t=16s
+cartpole seed=0 ep=1500 R=58 len=58 H=0.060 t=17s
+cartpole seed=0 ep=1600 R=46 len=46 H=0.069 t=17s
+cartpole seed=0 ep=1700 R=351 len=351 H=0.066 t=18s
+cartpole seed=0 ep=1800 R=202 len=202 H=0.069 t=20s
+cartpole seed=0 ep=1900 R=184 len=184 H=0.048 t=22s
+cartpole seed=0 ep=2000 R=91 len=91 H=0.057 t=23s
+done results/cartpole/C0_none/seed0 in 23.0s

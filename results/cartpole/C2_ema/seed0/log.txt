@@ -1,0 +1,21 @@
+cartpole seed=0 ep=100 R=389 len=389 H=0.462 t=2s
+cartpole seed=0 ep=200 R=185 len=185 H=0.519 t=5s
+cartpole seed=0 ep=300 R=500 len=500 H=0.436 t=10s
+cartpole seed=0 ep=400 R=500 len=500 H=0.503 t=16s
+cartpole seed=0 ep=500 R=500 len=500 H=0.340 t=22s
+cartpole seed=0 ep=600 R=119 len=119 H=0.274 t=27s
+cartpole seed=0 ep=700 R=11 len=11 H=0.288 t=30s
+cartpole seed=0 ep=800 R=30 len=30 H=0.217 t=30s
+cartpole seed=0 ep=900 R=102 len=102 H=0.163 t=31s
+cartpole seed=0 ep=1000 R=227 len=227 H=0.197 t=33s
+cartpole seed=0 ep=1100 R=237 len=237 H=0.172 t=36s
+cartpole seed=0 ep=1200 R=500 len=500 H=0.216 t=41s
+cartpole seed=0 ep=1300 R=500 len=500 H=0.166 t=47s
+cartpole seed=0 ep=1400 R=500 len=500 H=0.195 t=53s
+cartpole seed=0 ep=1500 R=500 len=500 H=0.202 t=57s
+cartpole seed=0 ep=1600 R=500 len=500 H=0.231 t=62s
+cartpole seed=0 ep=1700 R=500 len=500 H=0.289 t=66s
+cartpole seed=0 ep=1800 R=500 len=500 H=0.283 t=70s
+cartpole seed=0 ep=1900 R=500 len=500 H=0.310 t=74s
+cartpole seed=0 ep=2000 R=92 len=92 H=0.188 t=78s
+done results/cartpole/C2_ema/seed0 in 78.0s

@@ -1,0 +1,21 @@
+cartpole seed=2 ep=100 R=24 len=24 H=0.666 t=0s
+cartpole seed=2 ep=200 R=45 len=45 H=0.631 t=1s
+cartpole seed=2 ep=300 R=102 len=102 H=0.616 t=3s
+cartpole seed=2 ep=400 R=120 len=120 H=0.611 t=5s
+cartpole seed=2 ep=500 R=201 len=201 H=0.569 t=7s
+cartpole seed=2 ep=600 R=216 len=216 H=0.577 t=9s
+cartpole seed=2 ep=700 R=191 len=191 H=0.591 t=12s
+cartpole seed=2 ep=800 R=190 len=190 H=0.580 t=14s
+cartpole seed=2 ep=900 R=254 len=254 H=0.568 t=17s
+cartpole seed=2 ep=1000 R=275 len=275 H=0.579 t=20s
+cartpole seed=2 ep=1100 R=179 len=179 H=0.580 t=23s
+cartpole seed=2 ep=1200 R=192 len=192 H=0.533 t=25s
+cartpole seed=2 ep=1300 R=145 len=145 H=0.531 t=26s
+cartpole seed=2 ep=1400 R=140 len=140 H=0.545 t=28s
+cartpole seed=2 ep=1500 R=122 len=122 H=0.540 t=29s
+cartpole seed=2 ep=1600 R=166 len=166 H=0.562 t=31s
+cartpole seed=2 ep=1700 R=126 len=126 H=0.536 t=33s
+cartpole seed=2 ep=1800 R=115 len=115 H=0.517 t=34s
+cartpole seed=2 ep=1900 R=120 len=120 H=0.546 t=36s
+cartpole seed=2 ep=2000 R=142 len=142 H=0.554 t=37s
+done results/cartpole/C4_lr1e3/seed2 in 37.3s

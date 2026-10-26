@@ -1,0 +1,67 @@
+{
+  "ckpt_1600.pt": {
+    "mean": 115.24,
+    "std": 19.81914143818896,
+    "min": 16.0,
+    "max": 136.0,
+    "n": 50,
+    "causes": {
+      "x-limit": 0.96,
+      "angle": 0.04,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "ckpt_1700.pt": {
+    "mean": 103.86,
+    "std": 7.177089399254963,
+    "min": 81.0,
+    "max": 118.0,
+    "n": 50,
+    "causes": {
+      "x-limit": 0.82,
+      "angle": 0.18,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "ckpt_1800.pt": {
+    "mean": 119.22,
+    "std": 7.576251832980124,
+    "min": 101.0,
+    "max": 135.0,
+    "n": 50,
+    "causes": {
+      "x-limit": 0.94,
+      "angle": 0.06,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "ckpt_1900.pt": {
+    "mean": 145.96,
+    "std": 11.616244782938368,
+    "min": 123.0,
+    "max": 166.0,
+    "n": 50,
+    "causes": {
+      "x-limit": 1.0,
+      "angle": 0.0,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "ckpt_2000.pt": {
+    "mean": 188.78,
+    "std": 26.60849181623592,
+    "min": 155.0,
+    "max": 261.0,
+    "n": 50,
+    "causes": {
+      "x-limit": 0.98,
+      "angle": 0.02,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  }
+}

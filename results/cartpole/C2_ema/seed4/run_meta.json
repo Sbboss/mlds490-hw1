@@ -1,0 +1,10 @@
+{
+  "seed": 4,
+  "episodes": 2000,
+  "seconds": 60.585932970047,
+  "baseline": "ema",
+  "lr": 0.01,
+  "gamma": 0.95,
+  "gamma_weight": "off",
+  "hidden": 128
+}

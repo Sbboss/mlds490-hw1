@@ -1,0 +1,24 @@
+{
+  "episodes_done": 208,
+  "updates": 13,
+  "seconds": 32.78309226036072,
+  "device": "cuda",
+  "args": {
+    "seed": 0,
+    "workers": 16,
+    "episodes_per_update": 16,
+    "lr": 0.001,
+    "gamma": 0.99,
+    "max_episodes": 200,
+    "max_hours": 0.5,
+    "arch": "mlp",
+    "hidden": 200,
+    "baseline": "none",
+    "standardize": 0,
+    "pong_reset_at_point": 1,
+    "gamma_weight": "off",
+    "grad_clip": 0.0,
+    "resume": false,
+    "out": "results/pong/smoke_lr1e-3/seed0"
+  }
+}

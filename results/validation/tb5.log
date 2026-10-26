@@ -1,0 +1,26 @@
+[
+  {
+    "name": "T-B5_ep200_R2",
+    "kind": "prediction",
+    "passed": false,
+    "measured": "R2=-0.048 ratios const/V vs b0 = 0.182/0.886 cos=0.973/1.000",
+    "expected": "R\u00b2 > 0.5 at final (guess); ratios < 1; cosine \u2248 1",
+    "why": "Paired gradient-variance comparison on held-out episodes."
+  },
+  {
+    "name": "T-B5_ep1000_R2",
+    "kind": "prediction",
+    "passed": false,
+    "measured": "R2=-0.298 ratios const/V vs b0 = 0.172/0.803 cos=0.614/0.990",
+    "expected": "R\u00b2 > 0.5 at final (guess); ratios < 1; cosine \u2248 1",
+    "why": "Paired gradient-variance comparison on held-out episodes."
+  },
+  {
+    "name": "T-B5_final_R2",
+    "kind": "prediction",
+    "passed": false,
+    "measured": "R2=-0.085 ratios const/V vs b0 = 0.194/0.876 cos=0.987/1.000",
+    "expected": "R\u00b2 > 0.5 at final (guess); ratios < 1; cosine \u2248 1",
+    "why": "Paired gradient-variance comparison on held-out episodes."
+  }
+]

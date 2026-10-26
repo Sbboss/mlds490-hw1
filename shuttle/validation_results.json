@@ -1,0 +1,306 @@
+[
+ {
+  "name": "rows_sum_to_one",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |row sum - 1| = 0.00e+00",
+  "expected": "< 1e-12, all entries >= 0",
+  "why": "No probability mass is lost or created, including at the cap."
+ },
+ {
+  "name": "cap_clipping_mass",
+  "kind": "exact",
+  "passed": true,
+  "measured": "P[hold][199,200]=1.0, P[hold][198,199]=0.2, P[hold][198,200]=0.8",
+  "expected": "1.0, 0.2, 0.8",
+  "why": "Arrivals that overflow the cap are clipped onto state 200 with the right probability."
+ },
+ {
+  "name": "dispatch_transitions",
+  "kind": "exact",
+  "passed": true,
+  "measured": "s=0 -> 1..5 (0.2 each); s=200 -> 186..190; s=10 -> 1..5",
+  "expected": "uniform on leftover+{1..5}",
+  "why": "Dispatching with s<K (even s=0) ships everyone; s>K leaves s-K behind."
+ },
+ {
+  "name": "cost_table",
+  "kind": "exact",
+  "passed": true,
+  "measured": "c(hold,0)=0.0, c(disp,0)=100.0, c(hold,15)=30.0, c(disp,15)=100.0, c(disp,20)=110.0",
+  "expected": "0, 100, 30, 100, 110",
+  "why": "Costs follow the stated convention; dispatching an empty station still costs cf."
+ },
+ {
+  "name": "horizon_T1",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max err = 0.00e+00",
+  "expected": "< 1e-12",
+  "why": "T=1: V0(s) = min(hold cost, dispatch cost). Catches an off-by-one in the backward loop."
+ },
+ {
+  "name": "horizon_T2",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max err = 1.14e-13",
+  "expected": "< 1e-10",
+  "why": "T=2 recursion matches an independent loop implementation (no matrices)."
+ },
+ {
+  "name": "horizon_array_shape",
+  "kind": "exact",
+  "passed": true,
+  "measured": "V shape (501, 201), V[T] all zero = True",
+  "expected": "(501, 201), V[500]=0",
+  "why": "Exactly T=500 backups: V[T]=0 terminal and V[0] is time zero."
+ },
+ {
+  "name": "bruteforce_enumeration_T12",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |enumerated optimum - backward induction| = 1.14e-13 over 7 start states x 4096 sequences",
+  "expected": "< 1e-9",
+  "why": "Backward induction equals literal enumeration of all 2^12 action sequences (deterministic arrivals A=3)."
+ },
+ {
+  "name": "T500_vs_infinite_horizon",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |V_500(.) - V_inf(.)| = 4.86e-09",
+  "expected": "< 1e-6 (theory: gamma^500 * ||V*|| ~ 0.95^500 * 3800 ~ 3e-8 worst case)",
+  "why": "Finite-horizon T=500 and infinite-horizon solutions agree, since gamma^500 ~ 7e-12."
+ },
+ {
+  "name": "VI_equals_PI",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |V_VI - V_PI| = 8.23e-11; policies identical = True",
+  "expected": "< 1e-6 and identical",
+  "why": "Two independent algorithms reach the same fixed point."
+ },
+ {
+  "name": "PI_start_independence",
+  "kind": "exact",
+  "passed": true,
+  "measured": "always_hold: 6 iters, dV=0.0e+00, same policy=True; always_dispatch: 5 iters, dV=0.0e+00, same policy=True; random: 4 iters, dV=0.0e+00, same policy=True",
+  "expected": "same V and policy from all starts",
+  "why": "Policy iteration converges to the optimum from any initial policy."
+ },
+ {
+  "name": "PI_monotone_improvement",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max_s (V_{k+1} - V_k) over all iterations = 0.00e+00; iterations = 6",
+  "expected": "<= 1e-9 (costs never increase)",
+  "why": "Policy improvement theorem holds numerically; also catches sign errors in cost vs reward."
+ },
+ {
+  "name": "PI_few_iterations",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "6 iterations",
+  "expected": "<= 10 (typical)",
+  "why": "Policy iteration is Newton-like and should need few iterations; many would suggest a bug."
+ },
+ {
+  "name": "PI_eval_solve_vs_sweeps",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |linear solve - 10000 sweeps| = 9.09e-13",
+  "expected": "< 1e-8",
+  "why": "The linear-solve policy evaluation agrees with brute-force iterative evaluation."
+ },
+ {
+  "name": "VI_contraction_bound",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max_n [ ||V_n - V*|| - gamma^n ||V_1-V_0|| /(1-gamma) ] = -8.79e-10 over 580 iterations",
+  "expected": "<= 0",
+  "why": "Value iteration error stays under the theoretical contraction bound at every iteration."
+ },
+ {
+  "name": "VI_residual_ratio_to_gamma",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "residual ratio near residual 1e-6 = 0.9500",
+  "expected": "~0.95",
+  "why": "Asymptotic VI rate equals gamma because the constant direction (average cost > 0) contracts exactly at gamma."
+ },
+ {
+  "name": "VI_stopping_rule",
+  "kind": "exact",
+  "passed": true,
+  "measured": "final error 8.23e-11 <= gamma/(1-gamma) * last residual = 9.50e-11",
+  "expected": "error <= bound, error < 1e-9",
+  "why": "The stopping tolerance eps(1-gamma)/gamma delivers the promised accuracy."
+ },
+ {
+  "name": "VI_iteration_count",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "580 iterations to eps=1e-10",
+  "expected": "about 350-700 (worst case gamma^n * 470 < 5e-12 gives n ~ 630)",
+  "why": "Iteration count consistent with the contraction rate."
+ },
+ {
+  "name": "V_monotone_and_slope_bound",
+  "kind": "exact",
+  "passed": true,
+  "measured": "min slope = -0.000, max slope = 24.852",
+  "expected": ">= 0 and <= ch/(1-gamma) = 40.0",
+  "why": "An extra waiting customer cannot help and costs at most ch every period forever."
+ },
+ {
+  "name": "threshold_structure",
+  "kind": "exact",
+  "passed": true,
+  "measured": "threshold = 13, monotone threshold policy = True",
+  "expected": "dispatch iff s >= threshold",
+  "why": "Optimal policy is of control-limit type (no 'hold' above the first dispatch state)."
+ },
+ {
+  "name": "threshold_value",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "threshold = 13",
+  "expected": "about 13-17 (queue ~ capacity K=15)",
+  "why": "Dispatching roughly when the shuttle can be filled."
+ },
+ {
+  "name": "V_convexity_observation",
+  "kind": "prediction",
+  "passed": false,
+  "measured": "min second difference = -3.778",
+  "expected": ">= 0 (not guaranteed: min over actions of convex functions need not be convex)",
+  "why": "Observation only."
+ },
+ {
+  "name": "cost_scaling_x10",
+  "kind": "exact",
+  "passed": true,
+  "measured": "relative max |V' - 10 V| = 2.86e-16, same policy = True",
+  "expected": "< 1e-9, same policy",
+  "why": "Scaling both costs by 10 scales V by exactly 10 and leaves the policy unchanged (no hard-coded constants)."
+ },
+ {
+  "name": "limit_ch_zero",
+  "kind": "exact",
+  "passed": true,
+  "measured": "dispatch states = 0, max|V| = 0.0e+00",
+  "expected": "never dispatch, V=0",
+  "why": "With no holding cost there is no reason to ever pay cf."
+ },
+ {
+  "name": "limit_cf_zero",
+  "kind": "exact",
+  "passed": true,
+  "measured": "dispatch at all s>=1: True (s=0 is a tie -> hold)",
+  "expected": "always dispatch for s>=1",
+  "why": "With free dispatch, always ship."
+ },
+ {
+  "name": "limit_gamma_zero",
+  "kind": "exact",
+  "passed": true,
+  "measured": "dispatch states = 0",
+  "expected": "never dispatch (dispatch saves <= ch*K = 30 < cf = 100)",
+  "why": "A myopic agent never dispatches under these parameters."
+ },
+ {
+  "name": "threshold_vs_gamma",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "threshold by gamma: {0.0: None, 0.3: None, 0.5: None, 0.6: None, 0.7: None, 0.75: 15, 0.8: 14, 0.85: 14, 0.9: 13, 0.95: 13, 0.99: 13}",
+  "expected": "nonincreasing in gamma; dispatch first appears around gamma ~ 0.7-0.8",
+  "why": "More patient agents dispatch earlier; dispatch first used at gamma = 0.75."
+ },
+ {
+  "name": "cap_300_vs_200",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |V_300 - V_200| on s<=200 = 4.55e-13; policy identical = True",
+  "expected": "< 1e-8, identical",
+  "why": "The optimal policy never lets the queue approach 200, so the cap is irrelevant."
+ },
+ {
+  "name": "cap_400_vs_200",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |V_400 - V_200| on s<=200 = 4.55e-13; policy identical = True",
+  "expected": "< 1e-8, identical",
+  "why": "The optimal policy never lets the queue approach 200, so the cap is irrelevant."
+ },
+ {
+  "name": "cap_30_vs_200",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |V_30 - V_200| on s<=30 = 2.27e-13",
+  "expected": "< 1e-8",
+  "why": "Even a cap of 30 gives identical values on the shared states."
+ },
+ {
+  "name": "cap_10_artifact",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "V_10(0) = 356.04 vs V_200(0) = 576.67; dispatch states = 0",
+  "expected": "V lower and never dispatch: overflow customers vanish for free, so a tiny cap is an artifact",
+  "why": "Shows what the cap assumption does when it is binding."
+ },
+ {
+  "name": "cost_timing_sensitivity",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "threshold with holding charged on leftover = 13; on post-arrival queue = 13; V(0): 576.67 vs 696.67",
+  "expected": "threshold within +-3",
+  "why": "Charging ch on the post-arrival queue adds the constant ch*E[A] = 6 per period, i.e. exactly 120 to every V (until the cap binds), so the policy cannot change: the timing ambiguity is provably harmless here."
+ },
+ {
+  "name": "monte_carlo_V0",
+  "kind": "exact",
+  "passed": true,
+  "measured": "MC mean = 576.56 +- 0.16 (SE) vs V*(0) = 576.67; z = -0.68",
+  "expected": "|z| < 3.5",
+  "why": "Simulating the optimal policy with random arrivals reproduces V*(0) (independent of the matrices)."
+ },
+ {
+  "name": "optimal_beats_alternatives",
+  "kind": "exact",
+  "passed": true,
+  "measured": "V*(0)=576.7, never-dispatch V(0)=2203.9, always-dispatch V(0)=2000.0",
+  "expected": "V* <= V_pi for every state",
+  "why": "The optimum is no worse than trivial policies."
+ },
+ {
+  "name": "deterministic_arrivals_forward_sim",
+  "kind": "exact",
+  "passed": true,
+  "measured": "forward simulation = 569.753019, DP V*(0) = 569.753019",
+  "expected": "equal to 1e-8",
+  "why": "With A=3 every period, plain-loop simulation of the DP policy matches DP exactly."
+ },
+ {
+  "name": "stationary_identity",
+  "kind": "exact",
+  "passed": true,
+  "measured": "(1-gamma) E_mu[V*] = 32.344188; average cost g = 32.344188; stationarity residual 6.1e-14",
+  "expected": "equal",
+  "why": "Exact identity linking discounted values and the long-run average cost under the optimal policy."
+ },
+ {
+  "name": "dispatch_frequency",
+  "kind": "exact",
+  "passed": true,
+  "measured": "threshold 13 < K=15 so dispatches ship fewer than 15; frequency = 0.2133 (> 0.2), mean customers served per dispatch = 14.06",
+  "expected": "frequency = 3 / (mean customers served per dispatch) > 0.2",
+  "why": "Flow balance with partial loads: frequency x mean load = mean arrival rate (3)."
+ },
+ {
+  "name": "average_cost_prediction",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "average cost per period g = 32.34",
+  "expected": "about 30-40",
+  "why": "Back-of-envelope: dispatch about every 5 periods (20/period) plus holding (about 2 x queue)."
+ }
+]

@@ -1,0 +1,370 @@
+[
+ {
+  "name": "T-R1_half",
+  "kind": "exact",
+  "passed": true,
+  "measured": "[1.75, 1.5, 1.0]",
+  "expected": "[1.75, 1.5, 1.0]",
+  "why": "Backward loop G=r+\u03b3G. A forward-order bug would give [1, 1.5, 1.75]."
+ },
+ {
+  "name": "T-R1_cartpole_gamma",
+  "kind": "exact",
+  "passed": true,
+  "measured": "[2.8525, 1.95, 1.0]",
+  "expected": "[2.8525, 1.95, 1.0]",
+  "why": "CartPole \u03b3=0.95 hand-computed return-to-go on [1,1,1]."
+ },
+ {
+  "name": "T-R1_pong_reset",
+  "kind": "exact",
+  "passed": true,
+  "measured": "[-0.9801, -0.99, -1.0, 0.9801, 0.99, 1.0]",
+  "expected": "[-0.9801, -0.99, -1, 0.9801, 0.99, 1]",
+  "why": "Point-boundary reset: later +1 must not leak into the earlier \u22121."
+ },
+ {
+  "name": "T-R1_pong_noleak_contrast",
+  "kind": "exact",
+  "passed": true,
+  "measured": "G[2]=-0.029701",
+  "expected": "\u2248 -0.0297",
+  "why": "Without reset, the \u22121 point still contains later points (the leak D2 avoids)."
+ },
+ {
+  "name": "T-R4_adam_first_step",
+  "kind": "exact",
+  "passed": true,
+  "measured": "delta=[-0.010000000707805157, 0.0, 0.009999990463256836]",
+  "expected": "\u00b10.01 on nonzero grads, 0 on zero grad",
+  "why": "Explains why Adam hides gradient-scale differences between baseline arms."
+ },
+ {
+  "name": "T-R5_nan_guard",
+  "kind": "exact",
+  "passed": true,
+  "measured": "loss1=-0.0, loss4=-0.0, grad1=[-1.0], grad4 finite=True",
+  "expected": "finite loss and grads; length-1 skips standardization",
+  "why": "std(unbiased=False)+1e-8; length-1 would be 0/0 without the skip."
+ },
+ {
+  "name": "T-R2_weighted_matches_true_grad",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |z|=1.13; mean=[[-0.3647, 0.3647], [0.0327, -0.0327], [-0.1108, 0.1108]]; exact=[[-0.3656, 0.3656], [0.0327, -0.0327], [-0.1113, 0.1113]]",
+  "expected": "every component of the N=200k mean within 4 SE of \u2207J",
+  "why": "w_t=\u03b3^t is the exact gradient of J=E[r0+\u03b3 r1]."
+ },
+ {
+  "name": "T-R2_unweighted_matches_its_expectation",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |z|=0.72",
+  "expected": "within 4 SE of enumerated E[unweighted]",
+  "why": "The w_t=1 estimator is unbiased for a different (state-distribution) objective."
+ },
+ {
+  "name": "T-R2_unweighted_differs_from_true_grad",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |E[unweighted]\u2212\u2207J| / SE = 147.0; E_u=[[-0.3656, 0.3656], [0.0653, -0.0653], [-0.2225, 0.2225]] \u2207J=[[-0.3656, 0.3656], [0.0327, -0.0327], [-0.1113, 0.1113]]",
+  "expected": "differs from true \u2207J by >10 SE in at least one component",
+  "why": "With \u03b3=0.5 the unweighted step-2 term is off by a factor of 2 (1/\u03b3)."
+ },
+ {
+  "name": "T-R2_J_value",
+  "kind": "exact",
+  "passed": true,
+  "measured": "J(\u03b8)=0.828706",
+  "expected": "enumerated J (logged)",
+  "why": "Reference value of the toy objective at the fixed \u03b8 (seed 0, std 0.5)."
+ },
+ {
+  "name": "T-R3_bandit_closed_form",
+  "kind": "exact",
+  "passed": true,
+  "measured": "mean=[0.25087, -0.25087] se=[0.0005590150069434007, 0.0005590150069434007] z=[1.5563088453689187, 1.5563088453689187]",
+  "expected": "(+0.25, -0.25) within 4 SE, N=200k",
+  "why": "Closed-form softmax bandit; catches a missing (e_a\u2212\u03c0) or a flipped sign."
+ },
+ {
+  "name": "T-B1_unbiasedness",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max|z| b=0:0.98 b=J:0.92 b=V:0.92",
+  "expected": "all three means within 4 SE of \u2207J (N=200k, +10 reward offset)",
+  "why": "Action-independent baselines do not change the expected gradient."
+ },
+ {
+  "name": "T-B1_var_zero_gt_J",
+  "kind": "exact",
+  "passed": true,
+  "measured": "tr(Cov) b=0:139.6030 b=J:3.5819 b=V:0.1122",
+  "expected": "Var(b=0) > Var(b=J)",
+  "why": "A constant baseline equal to J reduces variance vs b=0."
+ },
+ {
+  "name": "T-B1_var_J_gt_V",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "tr(Cov) b=J:3.5819 b=V:0.1122",
+  "expected": "Var(b=J) > Var(b=V^\u03c0) expected",
+  "why": "The optimal state-value baseline should beat the best constant."
+ },
+ {
+  "name": "T-B2_bstar_at_half",
+  "kind": "exact",
+  "passed": true,
+  "measured": "b*=5.500000 J=5.500000",
+  "expected": "b* = J when \u03c0=(0.5,0.5)",
+  "why": "At a uniform policy the optimal constant baseline equals the mean reward."
+ },
+ {
+  "name": "T-B2_rare_action_weight",
+  "kind": "exact",
+  "passed": true,
+  "measured": "w_rare/w_common=9.0000",
+  "expected": "9",
+  "why": "For skewed \u03c0=0.9/0.1, b* weights the rarer action \u22489\u00d7 more."
+ },
+ {
+  "name": "T-B2_variance_ordering",
+  "kind": "exact",
+  "passed": true,
+  "measured": "Var(b*)=0.016200 Var(J)=0.131400 Var(0)=4.698000 b*=5.1000 J=5.9000",
+  "expected": "Var(b*) \u2264 Var(J) \u2264 Var(0)",
+  "why": "Closed-form variances of the 2-action softmax bandit estimator."
+ },
+ {
+  "name": "T-B3_zero_value_equals_no_baseline",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max abs diff = 0.00e+00",
+  "expected": "allclose rtol 1e-6",
+  "why": "A identically-zero baseline must not change the policy gradient."
+ },
+ {
+  "name": "T-B3_no_value_grad_from_policy_loss",
+  "kind": "exact",
+  "passed": true,
+  "measured": "any nonzero value grad=False",
+  "expected": "value-net grad is None or all-zero after policy backward",
+  "why": "baseline_values are detached inside reinforce_loss."
+ },
+ {
+  "name": "T-B3_value_loss_leaves_policy_grad",
+  "kind": "exact",
+  "passed": true,
+  "measured": "policy grads identical after value MSE backward",
+  "expected": "unchanged",
+  "why": "Separate graphs: value MSE must not write into policy.grad."
+ },
+ {
+  "name": "T-B4_ema_previous_only",
+  "kind": "exact",
+  "passed": true,
+  "measured": "baselines used=[0.0, 10.0, 11.0]; after last, b=12.9000",
+  "expected": "used[i] computed only from seq[:i] (first=0)",
+  "why": "EMA must not include the current episode's own returns."
+ },
+ {
+  "name": "T-B6_same_G_target",
+  "kind": "exact",
+  "passed": true,
+  "measured": "ValueBaseline.update receives the same G_t tensor the policy loss used",
+  "expected": "by construction in train_cartpole.policy_update / train_pong.train",
+  "why": "Advantage mean \u2248 0 is reported at eval time for a fitted baseline."
+ },
+ {
+  "name": "T-C1_term_vs_trunc",
+  "kind": "exact",
+  "passed": true,
+  "measured": "lengths=[500, 500, 500, 500, 500] flags=[(True, False, 'time-limit'), (True, False, 'time-limit'), (True, False, 'time-limit'), (True, False, 'time-limit'), (True, False, 'time-limit')]",
+  "expected": "every episode length 500, truncated=True, terminated=False, cause=time-limit",
+  "why": "Removing the failure thresholds leaves only the 500-step time limit."
+ },
+ {
+  "name": "T-C2_random_policy_anchor",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "mean=22.01 std=11.21 n=500",
+  "expected": "mean \u2208 [19, 26], std \u2208 [8, 17] (published random \u2248 22 \u00b1 12)",
+  "why": "Untrained net must look like a random agent before we claim learning."
+ },
+ {
+  "name": "T-C3_initial_policy",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "frac_a0=0.520 mean_entropy=0.693",
+  "expected": "frac \u2208 [0.4, 0.6], entropy \u2265 0.6 nats (max 0.693)",
+  "why": "Tiny last-layer init keeps the start near-uniform."
+ },
+ {
+  "name": "T-C4_same_seed_same_traj",
+  "kind": "exact",
+  "passed": true,
+  "measured": "same rewards=True actions=True states=True",
+  "expected": "identical obs/actions/rewards for the first episode",
+  "why": "Per-episode generator + env.reset(seed=) must replay."
+ },
+ {
+  "name": "T-C4_10step_trace",
+  "kind": "exact",
+  "passed": true,
+  "measured": "wrote results/validation/cartpole_10step_trace.json (10 steps)",
+  "expected": "table of (t, obs, probs, action, reward, G_t, log\u03c0)",
+  "why": "Isolating the first 10 steps is the assignment's requested evidence."
+ },
+ {
+  "name": "T-C4_three_updates_bit_identical",
+  "kind": "exact",
+  "passed": true,
+  "measured": "two independent 3-update runs with seed=7",
+  "expected": "bit-identical parameters on CPU",
+  "why": "Catches hidden RNG leaks (global torch seed, Adam state, numpy)."
+ },
+ {
+  "name": "T-C4_omitting_zero_grad_changes_params",
+  "kind": "exact",
+  "passed": true,
+  "measured": "dirty p=0.800000011920929 clean p=0.6000000238418579",
+  "expected": "parameters differ when zero_grad is omitted",
+  "why": "Proves the determinism test is not a tautology: a real bug is detectable."
+ },
+ {
+  "name": "T-C5_bookkeeping",
+  "kind": "exact",
+  "passed": true,
+  "measured": "len(logp)=len(R)=len(G)=17; buf cleared=True",
+  "expected": "equal lengths at every update; buffers empty after the step",
+  "why": "A dropped last transition would silently bias G_t and the loss."
+ },
+ {
+  "name": "T-C7_sum_loss_corr",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "corr(length, ||g||_sum)=0.771",
+  "expected": "r > 0.7 under the summed (per-episode) loss",
+  "why": "Longer episodes contribute more terms; the sum loss preserves that."
+ },
+ {
+  "name": "T-C7_mean_loss_corr",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "corr(length, ||g||_mean)=-0.262",
+  "expected": "weak under mean-over-timesteps (typically |r| < 0.7)",
+  "why": "Mean-over-t cancels the length signal, which is why we do not use it."
+ },
+ {
+  "name": "T-P1_actions_in_2_3",
+  "kind": "exact",
+  "passed": true,
+  "measured": "unique env actions=[2, 3] unique idx=[0, 1]",
+  "expected": "env actions \u2286 {2,3}, indices \u2286 {0,1}",
+  "why": "The network never emits NOOP/FIRE; only RIGHT/LEFT reach ALE."
+ },
+ {
+  "name": "T-P1_forced_logits",
+  "kind": "exact",
+  "passed": true,
+  "measured": "recorded=[2] n=30",
+  "expected": "env action 2 every step",
+  "why": "Index 0 is RIGHT = ALE action 2."
+ },
+ {
+  "name": "T-P2_paddle_control",
+  "kind": "exact",
+  "passed": true,
+  "measured": "visible=True travel_2=28.5px travel_3=77.5px delta2=-11.00 delta3=63.10 opposite=True cols=(68, 74)",
+  "expected": "centroid moves \u22655 px one way then \u22655 px the opposite way; paddle visible",
+  "why": "Confirms preprocess keeps the agent paddle and the action map actually steers it."
+ },
+ {
+  "name": "T-P3_copy_safe",
+  "kind": "exact",
+  "passed": true,
+  "measured": "obs unchanged=True",
+  "expected": "input obs unchanged after preprocess",
+  "why": "The assignment slices are views; we copy first so we do not mutate ALE's frame."
+ },
+ {
+  "name": "T-P3_shape_and_values",
+  "kind": "exact",
+  "passed": true,
+  "measured": "shape=(80, 80) unique=[0.0, 1.0] flat=6400",
+  "expected": "(80,80) \u2192 6400, values \u2286 {0,1}",
+  "why": "Matches the given preprocess spec."
+ },
+ {
+  "name": "T-P3_diff_and_first_zero",
+  "kind": "exact",
+  "passed": true,
+  "measured": "first_zero=True diff_vals=[-1, 0, 1] min_nz=6 frac_nonzero_diff_after20=0.96",
+  "expected": "first diff all 0; diffs \u2286 {-1,0,1}; min nonzero pixels > 0; \u226550% diffs nonzero after step 20",
+  "why": "First-frame convention + ball motion. A dead preprocess would be all zeros."
+ },
+ {
+  "name": "T-P4_initial_policy",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "frac_idx0=0.502 mean_entropy=0.693 n_actions=20383",
+  "expected": "frac \u2208 [0.4, 0.6], entropy \u2265 0.6",
+  "why": "Must hold before any multi-hour Pong run; otherwise the init is peaked."
+ },
+ {
+  "name": "T-P5_random_anchor",
+  "kind": "prediction",
+  "passed": false,
+  "measured": "rewards=[-20.0, -21.0, -21.0, -19.0, -21.0, -21.0, -21.0, -21.0, -21.0, -20.0, -19.0, -20.0, -20.0, -21.0, -21.0, -18.0, -21.0, -20.0, -21.0, -21.0] mean=-20.40",
+  "expected": "integer rewards in [-21,-19], mean \u2208 [-21, -19.8] (published random \u2248 -20.7)",
+  "why": "Learning is claimed only if MA100 rises by >0.3 (\u22653 SE) and stays there."
+ },
+ {
+  "name": "T-P9_scripted_ball_tracker",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "mean=9.00 rewards=[9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0]",
+  "expected": "mean > -18 over 10 episodes (clearly beats random \u2248 -20.7)",
+  "why": "Validates frames + action mapping. Naive chase scored -21; intercept + deadband is the controller under test (D19)."
+ },
+ {
+  "name": "T-P10_resume",
+  "kind": "exact",
+  "passed": true,
+  "measured": "n1=3 n2=5 ep_done=5 dup=False params_changed=True rc=0",
+  "expected": "episode counter continues to 5, no duplicated CSV rows, params not reset",
+  "why": "A resume that silently restarts would double-count and poison the curve."
+ },
+ {
+  "name": "T-P6_worker_learner_logp",
+  "kind": "exact",
+  "passed": true,
+  "measured": "max |log\u03c0_learner \u2212 log\u03c0_worker|=0.00e+00 T=945",
+  "expected": "< 1e-4",
+  "why": "Proves identical weights were used (on-policy) and the index/action map agrees."
+ },
+ {
+  "name": "T-P7_point_boundary_synthetic",
+  "kind": "exact",
+  "passed": true,
+  "measured": "G=[-0.9801, -0.99, -1.0, 0.9801, 0.99, 1.0, -0.99, -1.0]",
+  "expected": "returns at \u00b11 equal \u00b11; earlier steps of a point ignore later points",
+  "why": "Same logic as T-R1, applied to a Pong-like reward stream."
+ },
+ {
+  "name": "T-P7_point_boundary_real_episode",
+  "kind": "exact",
+  "passed": true,
+  "measured": "point_steps=[(63, -1.0, -1.0), (98, -1.0, -1.0), (133, -1.0, -1.0), (168, -1.0, -1.0), (203, -1.0, -1.0), (238, -1.0, -1.0)]... n_points=21",
+  "expected": "G_t = r_t at every point-scoring step",
+  "why": "On a real Pong episode, later points do not leak into earlier G_t."
+ },
+ {
+  "name": "T-P8_determinism_default",
+  "kind": "prediction",
+  "passed": true,
+  "measured": "same_hashes=True n=50 (default sticky-action env)",
+  "expected": "identical first-50-frame hashes if ALE is deterministic; else document and skip",
+  "why": "Default Pong-v5 has sticky-action probability 0.25, so this often fails \u2014 that is expected."
+ }
+]

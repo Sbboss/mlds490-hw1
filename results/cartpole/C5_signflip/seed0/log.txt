@@ -1,0 +1,4 @@
+cartpole seed=0 ep=100 R=10 len=10 H=0.018 t=0s
+cartpole seed=0 ep=200 R=11 len=11 H=0.002 t=0s
+cartpole seed=0 ep=300 R=10 len=10 H=0.003 t=0s
+done results/cartpole/C5_signflip/seed0 in 0.3s

@@ -1,0 +1,31 @@
+{
+  "sampled": {
+    "mean": 73.02,
+    "std": 16.934614324650244,
+    "min": 46.0,
+    "max": 135.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 0.0,
+      "angle": 1.0,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "greedy": {
+    "mean": 73.844,
+    "std": 18.750755869867827,
+    "min": 48.0,
+    "max": 253.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 0.0,
+      "angle": 1.0,
+      "time-limit": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "n": 500,
+  "eval_seed": 10000,
+  "ckpt": "results/cartpole/C0_none/seed0/final.pt"
+}

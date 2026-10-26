@@ -1,0 +1,158 @@
+pong device=cuda cuda=True visible=0
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.12.1+8a8fafb)
+[Powered by Stella]
+up=1 ep=16 R=-20.38 len=1032 H=0.693 p0=0.50 ma100=nan sps=1290 batch=2.4s wall=13s
+up=2 ep=32 R=-20.31 len=981 H=0.693 p0=0.51 ma100=nan sps=2267 batch=0.9s wall=14s
+up=3 ep=48 R=-20.56 len=1037 H=0.693 p0=0.50 ma100=nan sps=3187 batch=0.9s wall=15s
+up=4 ep=64 R=-20.12 len=1097 H=0.693 p0=0.50 ma100=nan sps=4021 batch=1.0s wall=17s
+up=5 ep=80 R=-20.31 len=1034 H=0.693 p0=0.50 ma100=nan sps=4663 batch=1.0s wall=18s
+up=6 ep=96 R=-20.50 len=1024 H=0.693 p0=0.51 ma100=nan sps=5184 batch=1.1s wall=19s
+up=7 ep=112 R=-19.62 len=1082 H=0.693 p0=0.50 ma100=-20.23 sps=5723 batch=1.0s wall=20s
+up=8 ep=128 R=-20.31 len=1015 H=0.693 p0=0.50 ma100=-20.22 sps=6163 batch=0.9s wall=22s
+up=9 ep=144 R=-20.69 len=1025 H=0.693 p0=0.50 ma100=-20.28 sps=6571 batch=0.9s wall=23s
+up=10 ep=160 R=-20.44 len=1041 H=0.693 p0=0.49 ma100=-20.27 sps=6944 batch=0.9s wall=24s
+up=11 ep=176 R=-20.38 len=1036 H=0.693 p0=0.51 ma100=-20.32 sps=7260 batch=1.0s wall=25s
+up=12 ep=192 R=-20.50 len=990 H=0.693 p0=0.50 ma100=-20.32 sps=7513 batch=1.0s wall=26s
+up=13 ep=208 R=-20.19 len=1035 H=0.693 p0=0.50 ma100=-20.39 sps=7765 batch=1.0s wall=28s
+up=14 ep=224 R=-20.25 len=1036 H=0.693 p0=0.50 ma100=-20.39 sps=7860 batch=1.0s wall=29s
+up=15 ep=240 R=-20.06 len=1054 H=0.693 p0=0.50 ma100=-20.32 sps=8011 batch=1.2s wall=31s
+up=16 ep=256 R=-20.38 len=986 H=0.693 p0=0.50 ma100=-20.30 sps=8127 batch=1.1s wall=32s
+up=17 ep=272 R=-20.56 len=942 H=0.693 p0=0.51 ma100=-20.33 sps=8268 batch=1.0s wall=34s
+up=18 ep=288 R=-20.62 len=948 H=0.693 p0=0.51 ma100=-20.37 sps=8416 batch=0.9s wall=35s
+up=19 ep=304 R=-20.38 len=1025 H=0.693 p0=0.51 ma100=-20.37 sps=8599 batch=0.9s wall=36s
+up=20 ep=320 R=-20.25 len=1006 H=0.693 p0=0.51 ma100=-20.36 sps=8763 batch=0.9s wall=37s
+up=21 ep=336 R=-20.50 len=994 H=0.693 p0=0.51 ma100=-20.43 sps=8913 batch=0.9s wall=38s
+up=22 ep=352 R=-20.50 len=1021 H=0.692 p0=0.50 ma100=-20.45 sps=9039 batch=1.0s wall=40s
+up=23 ep=368 R=-20.38 len=995 H=0.692 p0=0.51 ma100=-20.44 sps=9141 batch=1.1s wall=41s
+up=24 ep=384 R=-20.12 len=1018 H=0.692 p0=0.50 ma100=-20.37 sps=9307 batch=0.8s wall=42s
+up=25 ep=400 R=-20.38 len=1029 H=0.692 p0=0.50 ma100=-20.36 sps=9464 batch=0.8s wall=43s
+up=26 ep=416 R=-20.44 len=1048 H=0.692 p0=0.50 ma100=-20.38 sps=9569 batch=0.8s wall=44s
+up=27 ep=432 R=-20.69 len=1014 H=0.692 p0=0.50 ma100=-20.42 sps=9676 batch=1.0s wall=46s
+up=28 ep=448 R=-20.25 len=1079 H=0.692 p0=0.50 ma100=-20.39 sps=9726 batch=1.1s wall=47s
+up=29 ep=464 R=-20.50 len=1055 H=0.692 p0=0.51 ma100=-20.40 sps=9829 batch=1.0s wall=48s
+up=30 ep=480 R=-20.19 len=1068 H=0.691 p0=0.51 ma100=-20.41 sps=9944 batch=0.9s wall=49s
+up=31 ep=496 R=-20.44 len=1026 H=0.691 p0=0.51 ma100=-20.41 sps=10066 batch=0.8s wall=51s
+up=32 ep=512 R=-20.38 len=1025 H=0.691 p0=0.50 ma100=-20.41 sps=10156 batch=0.9s wall=52s
+up=33 ep=528 R=-20.62 len=955 H=0.691 p0=0.51 ma100=-20.41 sps=10215 batch=0.9s wall=53s
+up=34 ep=544 R=-20.75 len=1019 H=0.691 p0=0.51 ma100=-20.50 sps=10301 batch=0.9s wall=54s
+up=35 ep=560 R=-20.44 len=1022 H=0.691 p0=0.50 ma100=-20.48 sps=10390 batch=0.9s wall=55s
+up=36 ep=576 R=-20.50 len=1043 H=0.690 p0=0.49 ma100=-20.50 sps=10482 batch=0.9s wall=56s
+up=37 ep=592 R=-19.88 len=1084 H=0.690 p0=0.49 ma100=-20.43 sps=10535 batch=1.2s wall=58s
+up=38 ep=608 R=-20.38 len=1032 H=0.690 p0=0.49 ma100=-20.42 sps=10571 batch=1.1s wall=59s
+up=39 ep=624 R=-20.50 len=1032 H=0.690 p0=0.49 ma100=-20.42 sps=10555 batch=1.1s wall=61s
+up=40 ep=640 R=-20.06 len=1059 H=0.689 p0=0.49 ma100=-20.29 sps=10618 batch=1.0s wall=62s
+up=41 ep=656 R=-20.56 len=999 H=0.689 p0=0.48 ma100=-20.31 sps=10691 batch=0.9s wall=63s
+up=42 ep=672 R=-20.50 len=1047 H=0.689 p0=0.48 ma100=-20.32 sps=10745 batch=1.0s wall=64s
+up=43 ep=688 R=-20.44 len=1015 H=0.688 p0=0.49 ma100=-20.39 sps=10744 batch=1.1s wall=66s
+up=44 ep=704 R=-20.19 len=1080 H=0.688 p0=0.48 ma100=-20.38 sps=10834 batch=0.8s wall=67s
+up=45 ep=720 R=-20.75 len=1065 H=0.687 p0=0.48 ma100=-20.43 sps=10907 batch=0.9s wall=68s
+up=46 ep=736 R=-20.56 len=1109 H=0.687 p0=0.48 ma100=-20.49 sps=10954 batch=1.1s wall=69s
+up=47 ep=752 R=-20.25 len=1057 H=0.686 p0=0.48 ma100=-20.46 sps=11009 batch=1.0s wall=70s
+up=48 ep=768 R=-20.19 len=1076 H=0.685 p0=0.48 ma100=-20.40 sps=11071 batch=0.9s wall=72s
+up=49 ep=784 R=-20.38 len=1063 H=0.684 p0=0.48 ma100=-20.39 sps=11110 batch=1.1s wall=73s
+up=50 ep=800 R=-20.25 len=1097 H=0.683 p0=0.49 ma100=-20.39 sps=11151 batch=1.1s wall=74s
+up=51 ep=816 R=-20.25 len=1093 H=0.683 p0=0.48 ma100=-20.34 sps=11184 batch=0.9s wall=75s
+up=52 ep=832 R=-20.12 len=1098 H=0.680 p0=0.48 ma100=-20.25 sps=11215 batch=1.1s wall=77s
+up=53 ep=848 R=-20.06 len=1073 H=0.679 p0=0.47 ma100=-20.23 sps=11267 batch=0.9s wall=78s
+up=54 ep=864 R=-20.12 len=1095 H=0.678 p0=0.47 ma100=-20.21 sps=11324 batch=0.9s wall=79s
+up=55 ep=880 R=-20.19 len=1152 H=0.676 p0=0.47 ma100=-20.15 sps=11340 batch=1.2s wall=81s
+up=56 ep=896 R=-20.06 len=1127 H=0.674 p0=0.47 ma100=-20.16 sps=11367 batch=1.1s wall=82s
+up=57 ep=912 R=-20.00 len=1107 H=0.674 p0=0.47 ma100=-20.12 sps=11422 batch=0.9s wall=83s
+up=58 ep=928 R=-20.00 len=1106 H=0.672 p0=0.47 ma100=-20.08 sps=11451 batch=1.1s wall=85s
+up=59 ep=944 R=-19.88 len=1119 H=0.670 p0=0.47 ma100=-20.06 sps=11492 batch=1.0s wall=86s
+up=60 ep=960 R=-20.38 len=1143 H=0.670 p0=0.48 ma100=-20.07 sps=11545 batch=1.0s wall=87s
+up=61 ep=976 R=-20.31 len=1104 H=0.669 p0=0.47 ma100=-20.12 sps=11557 batch=1.2s wall=88s
+up=62 ep=992 R=-19.62 len=1248 H=0.668 p0=0.47 ma100=-20.05 sps=11598 batch=1.2s wall=90s
+up=63 ep=1008 R=-19.88 len=1193 H=0.666 p0=0.46 ma100=-20.01 sps=11663 batch=0.9s wall=91s
+up=64 ep=1024 R=-20.31 len=1050 H=0.667 p0=0.46 ma100=-20.08 sps=11610 batch=1.3s wall=93s
+up=65 ep=1040 R=-19.88 len=1118 H=0.666 p0=0.46 ma100=-20.07 sps=11661 batch=0.8s wall=94s
+up=66 ep=1056 R=-20.25 len=1075 H=0.665 p0=0.46 ma100=-20.06 sps=11679 batch=1.1s wall=95s
+up=67 ep=1072 R=-20.19 len=1096 H=0.665 p0=0.47 ma100=-20.02 sps=11668 batch=1.3s wall=97s
+up=68 ep=1088 R=-20.25 len=1223 H=0.664 p0=0.46 ma100=-20.14 sps=11718 batch=1.0s wall=98s
+up=69 ep=1104 R=-20.19 len=1130 H=0.663 p0=0.47 ma100=-20.14 sps=11747 batch=1.0s wall=99s
+up=70 ep=1120 R=-19.69 len=1178 H=0.663 p0=0.46 ma100=-20.07 sps=11751 batch=1.3s wall=101s
+up=71 ep=1136 R=-20.31 len=1154 H=0.661 p0=0.46 ma100=-20.14 sps=11782 batch=1.1s wall=102s
+up=72 ep=1152 R=-19.88 len=1164 H=0.659 p0=0.46 ma100=-20.10 sps=11809 batch=1.1s wall=104s
+up=73 ep=1168 R=-20.38 len=1056 H=0.660 p0=0.47 ma100=-20.13 sps=11805 batch=1.1s wall=105s
+up=74 ep=1184 R=-19.25 len=1167 H=0.656 p0=0.47 ma100=-19.96 sps=11858 batch=0.9s wall=106s
+up=75 ep=1200 R=-20.00 len=1115 H=0.654 p0=0.47 ma100=-19.94 sps=11874 batch=1.2s wall=108s
+up=76 ep=1216 R=-19.94 len=1162 H=0.652 p0=0.47 ma100=-19.93 sps=11845 batch=1.2s wall=109s
+up=77 ep=1232 R=-20.19 len=1138 H=0.653 p0=0.48 ma100=-19.95 sps=11896 batch=0.8s wall=110s
+up=78 ep=1248 R=-19.75 len=1233 H=0.648 p0=0.48 ma100=-19.93 sps=11898 batch=1.4s wall=112s
+up=79 ep=1264 R=-19.75 len=1233 H=0.647 p0=0.48 ma100=-19.84 sps=11947 batch=1.0s wall=113s
+up=80 ep=1280 R=-19.94 len=1196 H=0.644 p0=0.48 ma100=-19.88 sps=11972 batch=1.1s wall=115s
+up=81 ep=1296 R=-19.88 len=1268 H=0.642 p0=0.48 ma100=-19.92 sps=12007 batch=1.1s wall=116s
+up=82 ep=1312 R=-19.75 len=1211 H=0.641 p0=0.47 ma100=-19.89 sps=12044 batch=1.0s wall=117s
+up=83 ep=1328 R=-19.50 len=1284 H=0.641 p0=0.48 ma100=-19.79 sps=12078 batch=1.2s wall=119s
+up=84 ep=1344 R=-19.56 len=1267 H=0.638 p0=0.48 ma100=-19.71 sps=12106 batch=1.2s wall=120s
+up=85 ep=1360 R=-19.81 len=1221 H=0.635 p0=0.48 ma100=-19.75 sps=12116 batch=1.3s wall=122s
+up=86 ep=1376 R=-19.88 len=1264 H=0.633 p0=0.47 ma100=-19.76 sps=12118 batch=1.4s wall=123s
+up=87 ep=1392 R=-19.88 len=1209 H=0.629 p0=0.47 ma100=-19.76 sps=12145 batch=1.1s wall=125s
+up=88 ep=1408 R=-19.44 len=1324 H=0.627 p0=0.47 ma100=-19.68 sps=12163 batch=1.3s wall=126s
+up=89 ep=1424 R=-19.56 len=1292 H=0.623 p0=0.47 ma100=-19.67 sps=12141 batch=1.4s wall=128s
+up=90 ep=1440 R=-19.25 len=1274 H=0.621 p0=0.47 ma100=-19.63 sps=12173 batch=1.1s wall=129s
+up=91 ep=1456 R=-19.31 len=1303 H=0.617 p0=0.47 ma100=-19.53 sps=12195 batch=1.3s wall=131s
+up=92 ep=1472 R=-19.75 len=1298 H=0.613 p0=0.48 ma100=-19.57 sps=12190 batch=1.5s wall=133s
+up=93 ep=1488 R=-19.25 len=1423 H=0.608 p0=0.48 ma100=-19.47 sps=12214 batch=1.3s wall=134s
+up=94 ep=1504 R=-19.31 len=1352 H=0.602 p0=0.48 ma100=-19.37 sps=12254 batch=1.1s wall=136s
+up=95 ep=1520 R=-19.69 len=1379 H=0.599 p0=0.48 ma100=-19.40 sps=12246 batch=1.6s wall=137s
+up=96 ep=1536 R=-19.44 len=1346 H=0.595 p0=0.49 ma100=-19.44 sps=12287 batch=1.0s wall=139s
+up=97 ep=1552 R=-18.88 len=1420 H=0.589 p0=0.49 ma100=-19.35 sps=12323 batch=1.2s wall=140s
+up=98 ep=1568 R=-19.19 len=1423 H=0.582 p0=0.48 ma100=-19.29 sps=12336 batch=1.4s wall=142s
+up=99 ep=1584 R=-19.31 len=1290 H=0.578 p0=0.49 ma100=-19.34 sps=12364 batch=1.1s wall=143s
+up=100 ep=1600 R=-19.44 len=1347 H=0.575 p0=0.50 ma100=-19.35 sps=12365 batch=1.4s wall=145s
+up=101 ep=1616 R=-18.81 len=1464 H=0.570 p0=0.50 ma100=-19.17 sps=12382 batch=1.2s wall=147s
+up=102 ep=1632 R=-19.12 len=1483 H=0.566 p0=0.50 ma100=-19.16 sps=12413 batch=1.3s wall=148s
+up=103 ep=1648 R=-19.31 len=1435 H=0.562 p0=0.50 ma100=-19.17 sps=12394 batch=1.8s wall=150s
+up=104 ep=1664 R=-18.38 len=1486 H=0.558 p0=0.49 ma100=-19.07 sps=12430 batch=1.3s wall=152s
+up=105 ep=1680 R=-18.19 len=1516 H=0.554 p0=0.50 ma100=-18.89 sps=12466 batch=1.3s wall=153s
+up=106 ep=1696 R=-18.81 len=1484 H=0.548 p0=0.50 ma100=-18.81 sps=12454 batch=1.7s wall=155s
+up=107 ep=1712 R=-19.19 len=1410 H=0.538 p0=0.50 ma100=-18.87 sps=12496 batch=1.1s wall=157s
+up=108 ep=1728 R=-18.50 len=1411 H=0.537 p0=0.51 ma100=-18.74 sps=12509 batch=1.4s wall=158s
+up=109 ep=1744 R=-18.12 len=1485 H=0.531 p0=0.51 ma100=-18.54 sps=12532 batch=1.4s wall=160s
+up=110 ep=1760 R=-18.75 len=1483 H=0.522 p0=0.50 ma100=-18.59 sps=12562 batch=1.3s wall=161s
+up=111 ep=1776 R=-17.56 len=1648 H=0.519 p0=0.50 ma100=-18.43 sps=12558 batch=1.9s wall=163s
+up=112 ep=1792 R=-18.44 len=1543 H=0.513 p0=0.50 ma100=-18.43 sps=12580 batch=1.4s wall=165s
+up=113 ep=1808 R=-17.62 len=1591 H=0.505 p0=0.50 ma100=-18.21 sps=12608 batch=1.4s wall=167s
+up=114 ep=1824 R=-18.12 len=1573 H=0.502 p0=0.51 ma100=-18.11 sps=12614 batch=1.5s wall=169s
+up=115 ep=1840 R=-17.25 len=1613 H=0.495 p0=0.51 ma100=-17.95 sps=12629 batch=1.6s wall=171s
+up=116 ep=1856 R=-18.00 len=1547 H=0.491 p0=0.50 ma100=-17.88 sps=12671 batch=1.2s wall=172s
+up=117 ep=1872 R=-17.69 len=1626 H=0.485 p0=0.50 ma100=-17.82 sps=12681 batch=1.7s wall=174s
+up=118 ep=1888 R=-17.75 len=1716 H=0.481 p0=0.50 ma100=-17.81 sps=12713 batch=1.5s wall=176s
+up=119 ep=1904 R=-18.12 len=1626 H=0.476 p0=0.50 ma100=-17.76 sps=12751 batch=1.3s wall=177s
+up=120 ep=1920 R=-16.50 len=1759 H=0.466 p0=0.49 ma100=-17.57 sps=12735 batch=2.0s wall=180s
+up=121 ep=1936 R=-17.00 len=1852 H=0.461 p0=0.49 ma100=-17.53 sps=12758 batch=1.8s wall=182s
+up=122 ep=1952 R=-17.69 len=1744 H=0.461 p0=0.49 ma100=-17.50 sps=12796 batch=1.4s wall=183s
+up=123 ep=1968 R=-18.19 len=1812 H=0.456 p0=0.49 ma100=-17.55 sps=12814 batch=1.8s wall=185s
+up=124 ep=1984 R=-16.50 len=1899 H=0.450 p0=0.49 ma100=-17.31 sps=12843 batch=1.7s wall=187s
+up=125 ep=2000 R=-17.38 len=1871 H=0.446 p0=0.49 ma100=-17.27 sps=12881 batch=1.5s wall=189s

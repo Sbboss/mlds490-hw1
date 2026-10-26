@@ -1,0 +1,21 @@
+cartpole seed=2 ep=100 R=170 len=170 H=0.565 t=1s
+cartpole seed=2 ep=200 R=225 len=225 H=0.457 t=4s
+cartpole seed=2 ep=300 R=9 len=9 H=0.337 t=5s
+cartpole seed=2 ep=400 R=10 len=10 H=0.012 t=5s
+cartpole seed=2 ep=500 R=9 len=9 H=0.006 t=5s
+cartpole seed=2 ep=600 R=9 len=9 H=0.003 t=6s
+cartpole seed=2 ep=700 R=10 len=10 H=0.002 t=6s
+cartpole seed=2 ep=800 R=9 len=9 H=0.001 t=6s
+cartpole seed=2 ep=900 R=8 len=8 H=0.004 t=6s
+cartpole seed=2 ep=1000 R=10 len=10 H=0.022 t=6s
+cartpole seed=2 ep=1100 R=10 len=10 H=0.003 t=6s
+cartpole seed=2 ep=1200 R=10 len=10 H=0.004 t=7s
+cartpole seed=2 ep=1300 R=9 len=9 H=0.003 t=7s
+cartpole seed=2 ep=1400 R=10 len=10 H=0.001 t=7s
+cartpole seed=2 ep=1500 R=10 len=10 H=0.001 t=7s
+cartpole seed=2 ep=1600 R=9 len=9 H=0.001 t=7s
+cartpole seed=2 ep=1700 R=9 len=9 H=0.001 t=7s
+cartpole seed=2 ep=1800 R=8 len=8 H=0.009 t=8s
+cartpole seed=2 ep=1900 R=8 len=8 H=0.004 t=8s
+cartpole seed=2 ep=2000 R=8 len=8 H=0.002 t=8s
+done results/cartpole/C3_gamma_weight/seed2 in 7.9s

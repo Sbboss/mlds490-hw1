@@ -1,0 +1,21 @@
+cartpole seed=2 ep=100 R=145 len=145 H=0.559 t=0s
+cartpole seed=2 ep=200 R=140 len=140 H=0.261 t=2s
+cartpole seed=2 ep=300 R=111 len=111 H=0.209 t=4s
+cartpole seed=2 ep=400 R=500 len=500 H=0.253 t=7s
+cartpole seed=2 ep=500 R=500 len=500 H=0.144 t=13s
+cartpole seed=2 ep=600 R=75 len=75 H=0.117 t=16s
+cartpole seed=2 ep=700 R=89 len=89 H=0.097 t=18s
+cartpole seed=2 ep=800 R=164 len=164 H=0.102 t=20s
+cartpole seed=2 ep=900 R=259 len=259 H=0.111 t=22s
+cartpole seed=2 ep=1000 R=174 len=174 H=0.109 t=25s
+cartpole seed=2 ep=1100 R=270 len=270 H=0.097 t=27s
+cartpole seed=2 ep=1200 R=210 len=210 H=0.089 t=29s
+cartpole seed=2 ep=1300 R=146 len=146 H=0.111 t=31s
+cartpole seed=2 ep=1400 R=252 len=252 H=0.174 t=34s
+cartpole seed=2 ep=1500 R=500 len=500 H=0.214 t=38s
+cartpole seed=2 ep=1600 R=500 len=500 H=0.140 t=44s
+cartpole seed=2 ep=1700 R=500 len=500 H=0.151 t=49s
+cartpole seed=2 ep=1800 R=500 len=500 H=0.189 t=54s
+cartpole seed=2 ep=1900 R=81 len=81 H=0.299 t=58s
+cartpole seed=2 ep=2000 R=500 len=500 H=0.181 t=61s
+done results/cartpole/C1_value/seed2 in 60.5s

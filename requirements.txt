@@ -1,0 +1,11 @@
+numpy>=1.26
+matplotlib>=3.8
+pandas>=2.2
+pytest>=8.0
+markdown>=3.5
+tqdm>=4.66
+gymnasium[atari]>=1.0
+ale-py>=0.10
+# torch is installed separately:
+#   local:  pip install torch
+#   deepdish (Blackwell): pip install torch --index-url https://download.pytorch.org/whl/cu128

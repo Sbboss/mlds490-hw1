@@ -1,0 +1,38 @@
+START gamma0 seed 0
+cartpole seed=0 ep=100 R=9 len=9 H=0.178 t=0s
+cartpole seed=0 ep=200 R=17 len=17 H=0.630 t=0s
+cartpole seed=0 ep=300 R=12 len=12 H=0.454 t=0s
+cartpole seed=0 ep=400 R=10 len=10 H=0.041 t=0s
+cartpole seed=0 ep=500 R=10 len=10 H=0.006 t=1s
+cartpole seed=0 ep=600 R=10 len=10 H=0.007 t=1s
+cartpole seed=0 ep=700 R=10 len=10 H=0.003 t=1s
+cartpole seed=0 ep=800 R=9 len=9 H=0.002 t=1s
+cartpole seed=0 ep=900 R=10 len=10 H=0.002 t=1s
+cartpole seed=0 ep=1000 R=9 len=9 H=0.001 t=1s
+done results/cartpole/C6_gamma0/seed0 in 1.0s
+OK gamma0 seed 0
+START gamma0 seed 1
+cartpole seed=1 ep=100 R=10 len=10 H=0.006 t=0s
+cartpole seed=1 ep=200 R=10 len=10 H=0.001 t=0s
+cartpole seed=1 ep=300 R=10 len=10 H=0.001 t=0s
+cartpole seed=1 ep=400 R=10 len=10 H=0.001 t=0s
+cartpole seed=1 ep=500 R=9 len=9 H=0.000 t=0s
+cartpole seed=1 ep=600 R=8 len=8 H=0.000 t=0s
+cartpole seed=1 ep=700 R=8 len=8 H=0.000 t=1s
+cartpole seed=1 ep=800 R=8 len=8 H=0.000 t=1s
+cartpole seed=1 ep=900 R=10 len=10 H=0.000 t=1s
+cartpole seed=1 ep=1000 R=9 len=9 H=0.000 t=1s
+done results/cartpole/C6_gamma0/seed1 in 0.8s
+OK gamma0 seed 1
+START gamma0 seed 2
+cartpole seed=2 ep=100 R=10 len=10 H=0.015 t=0s
+cartpole seed=2 ep=200 R=8 len=8 H=0.004 t=0s
+cartpole seed=2 ep=300 R=9 len=9 H=0.003 t=0s
+cartpole seed=2 ep=400 R=10 len=10 H=0.001 t=0s
+cartpole seed=2 ep=500 R=9 len=9 H=0.001 t=0s
+cartpole seed=2 ep=600 R=9 len=9 H=0.001 t=0s
+cartpole seed=2 ep=700 R=10 len=10 H=0.000 t=1s
+cartpole seed=2 ep=800 R=9 len=9 H=0.000 t=1s
+cartpole seed=2 ep=900 R=8 len=8 H=0.000 t=1s
+cartpole seed=2 ep=1000 R=10 len=10 H=0.000 t=1s
+done results/cartpole/C6_gamma0/seed2 in 0.8s

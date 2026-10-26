@@ -1,0 +1,10 @@
+{
+  "seed": 2,
+  "episodes": 300,
+  "seconds": 0.32873988151550293,
+  "baseline": "none",
+  "lr": 0.01,
+  "gamma": 0.95,
+  "gamma_weight": "off",
+  "hidden": 128
+}

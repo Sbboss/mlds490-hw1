@@ -1,0 +1,21 @@
+cartpole seed=0 ep=100 R=201 len=201 H=0.606 t=1s
+cartpole seed=0 ep=200 R=500 len=500 H=0.441 t=4s
+cartpole seed=0 ep=300 R=87 len=87 H=0.328 t=5s
+cartpole seed=0 ep=400 R=500 len=500 H=0.377 t=8s
+cartpole seed=0 ep=500 R=300 len=300 H=0.414 t=14s
+cartpole seed=0 ep=600 R=216 len=216 H=0.422 t=17s
+cartpole seed=0 ep=700 R=500 len=500 H=0.412 t=22s
+cartpole seed=0 ep=800 R=500 len=500 H=0.443 t=28s
+cartpole seed=0 ep=900 R=500 len=500 H=0.450 t=34s
+cartpole seed=0 ep=1000 R=500 len=500 H=0.367 t=40s
+cartpole seed=0 ep=1100 R=500 len=500 H=0.305 t=45s
+cartpole seed=0 ep=1200 R=500 len=500 H=0.332 t=50s
+cartpole seed=0 ep=1300 R=500 len=500 H=0.273 t=56s
+cartpole seed=0 ep=1400 R=500 len=500 H=0.326 t=61s
+cartpole seed=0 ep=1500 R=500 len=500 H=0.268 t=65s
+cartpole seed=0 ep=1600 R=101 len=101 H=0.184 t=68s
+cartpole seed=0 ep=1700 R=500 len=500 H=0.221 t=72s
+cartpole seed=0 ep=1800 R=500 len=500 H=0.230 t=76s
+cartpole seed=0 ep=1900 R=500 len=500 H=0.274 t=80s
+cartpole seed=0 ep=2000 R=500 len=500 H=0.278 t=84s
+done results/cartpole/C1_value/seed0 in 84.0s

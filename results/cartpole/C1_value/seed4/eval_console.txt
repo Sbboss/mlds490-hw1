@@ -1,0 +1,95 @@
+{
+  "sampled": {
+    "mean": 490.28,
+    "std": 25.70804167597422,
+    "min": 336.0,
+    "max": 500.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 0.144,
+      "angle": 0.056,
+      "time-limit": 0.8,
+      "unknown": 0.0
+    }
+  },
+  "greedy": {
+    "mean": 495.078,
+    "std": 20.132126590156446,
+    "min": 345.0,
+    "max": 500.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 0.05,
+      "angle": 0.04,
+      "time-limit": 0.91,
+      "unknown": 0.0
+    }
+  },
+  "spread": {
+    "ckpt_1600.pt": {
+      "mean": 500.0,
+      "std": 0.0,
+      "min": 500.0,
+      "max": 500.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 0.0,
+        "angle": 0.0,
+        "time-limit": 1.0,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_1700.pt": {
+      "mean": 500.0,
+      "std": 0.0,
+      "min": 500.0,
+      "max": 500.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 0.0,
+        "angle": 0.0,
+        "time-limit": 1.0,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_1800.pt": {
+      "mean": 499.58,
+      "std": 2.9698484809834995,
+      "min": 479.0,
+      "max": 500.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 0.0,
+        "angle": 0.02,
+        "time-limit": 0.98,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_1900.pt": {
+      "mean": 500.0,
+      "std": 0.0,
+      "min": 500.0,
+      "max": 500.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 0.0,
+        "angle": 0.0,
+        "time-limit": 1.0,
+        "unknown": 0.0
+      }
+    },
+    "ckpt_2000.pt": {
+      "mean": 489.84,
+      "std": 23.392271530292625,
+      "min": 414.0,
+      "max": 500.0,
+      "n": 50,
+      "causes": {
+        "x-limit": 0.22,
+        "angle": 0.02,
+        "time-limit": 0.76,
+        "unknown": 0.0
+      }
+    }
+  }
+}

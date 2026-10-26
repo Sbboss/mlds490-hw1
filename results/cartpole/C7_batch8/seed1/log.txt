@@ -1,0 +1,21 @@
+cartpole seed=1 ep=100 R=91 len=91 H=0.575 t=0s
+cartpole seed=1 ep=200 R=230 len=230 H=0.521 t=2s
+cartpole seed=1 ep=300 R=500 len=500 H=0.482 t=4s
+cartpole seed=1 ep=400 R=488 len=488 H=0.526 t=10s
+cartpole seed=1 ep=500 R=167 len=167 H=0.536 t=12s
+cartpole seed=1 ep=600 R=207 len=207 H=0.544 t=14s
+cartpole seed=1 ep=700 R=202 len=202 H=0.507 t=17s
+cartpole seed=1 ep=800 R=45 len=45 H=0.462 t=19s
+cartpole seed=1 ep=900 R=167 len=167 H=0.464 t=20s
+cartpole seed=1 ep=1000 R=198 len=198 H=0.447 t=24s
+cartpole seed=1 ep=1100 R=261 len=261 H=0.406 t=26s
+cartpole seed=1 ep=1200 R=500 len=500 H=0.392 t=31s
+cartpole seed=1 ep=1300 R=127 len=127 H=0.357 t=34s
+cartpole seed=1 ep=1400 R=112 len=112 H=0.356 t=36s
+cartpole seed=1 ep=1500 R=111 len=111 H=0.349 t=36s
+cartpole seed=1 ep=1600 R=132 len=132 H=0.323 t=38s
+cartpole seed=1 ep=1700 R=198 len=198 H=0.315 t=39s
+cartpole seed=1 ep=1800 R=272 len=272 H=0.307 t=41s
+cartpole seed=1 ep=1900 R=277 len=277 H=0.327 t=45s
+cartpole seed=1 ep=2000 R=163 len=163 H=0.319 t=47s
+done results/cartpole/C7_batch8/seed1 in 46.9s

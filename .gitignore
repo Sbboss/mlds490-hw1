@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.DS_Store
+*.egg-info/
+.mplconfig/
+report/_preview/
+.coverage
+htmlcov/
+
+# large / resumable checkpoints; keep final.pt and small eval artifacts
+results/**/ckpt_*.pt
+results/**/latest.pt
+*.pt.bak
+
+# local editor / OS
+.idea/
+.vscode/

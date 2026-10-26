@@ -1,0 +1,31 @@
+{
+  "sampled": {
+    "mean": 500.0,
+    "std": 0.0,
+    "min": 500.0,
+    "max": 500.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 0.0,
+      "angle": 0.0,
+      "time-limit": 1.0,
+      "unknown": 0.0
+    }
+  },
+  "greedy": {
+    "mean": 500.0,
+    "std": 0.0,
+    "min": 500.0,
+    "max": 500.0,
+    "n": 500,
+    "causes": {
+      "x-limit": 0.0,
+      "angle": 0.0,
+      "time-limit": 1.0,
+      "unknown": 0.0
+    }
+  },
+  "n": 500,
+  "eval_seed": 10000,
+  "ckpt": "results/cartpole/C1_value/seed0/final.pt"
+}
